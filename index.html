@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>עמיתוווו 🎉 | 22</title>
+  <meta name="description" content="הפתעת יום הולדת לעמית — דף חמוד עם אנימציות, גלריה, טיימליין ומחולל מחמאות" />
+  <meta property="og:title" content="עמיתוווו 🎉 | 22" />
+  <meta property="og:description" content="הפתעת יום הולדת לעמית — דף חמוד עם אנימציות, גלריה, טיימליין ומחולל מחמאות" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%23ffd9e6'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='72' fill='%23ff4d88'%3Eעמיתוווו 22%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
+  <style>
+    :root{
+      --pink:#ff6fa3;       /* ורוד דינאמי */
+      --pink-2:#ffd5e5;     /* ורוד בהיר */
+      --pink-3:#ffc1d6;     /* ורוד עדין */
+      --rose:#ff2f75;       /* הדגשה */
+      --bg:#fff7fb;         /* רקע לבן-ורדרד */
+      --ink:#2a2a2a;        /* טקסט כהה */
+      --card:#ffffff;       /* קלפים */
+      --muted:#7a7a7a;      /* טקסט משני */
+      --shadow: 0 10px 30px rgba(255,111,163,0.15);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--rose)}
+
+    /* כפתורים כלליים */
+    .btn{background:var(--pink);color:#fff;border:0;border-radius:14px;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease, filter .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn.ghost{background:#fff;color:var(--pink);border:2px solid var(--pink)}
+
+    /* מסך סיסמה */
+    .gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--pink-2),#fff);z-index:9999}
+    .gate .card{width:min(520px,92vw);background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:28px}
+    .gate h1{margin:0 0 6px;font-size:28px;color:var(--rose)}
+    .gate p{margin:0 0 14px;color:var(--muted)}
+    .gate .row{display:flex;gap:10px;margin-top:10px}
+    .input{flex:1;border:2px solid var(--pink-3);border-radius:12px;padding:12px 14px;font-size:16px}
+    .error{color:#c30052;margin-top:10px;display:none}
+
+    /* מסך ספירה לאחור */
+    .countdown{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,var(--pink-2));z-index:8888;text-align:center;padding:20px}
+    .countdown h2{color:var(--rose);font-size:26px;margin:0 0 12px}
+    .clock{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .time-box{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:14px 16px;min-width:82px}
+    .time-box .num{font-size:28px;font-weight:900;color:var(--pink)}
+    .time-box .lbl{font-size:12px;color:var(--muted)}
+    .hint{margin-top:14px;color:var(--muted);font-size:14px}
+
+    /* עיטור רקע עדין */
+    .decor{position:fixed;inset:0;pointer-events:none;opacity:.25;z-index:0}
+    .blob{position:absolute;filter:blur(50px);opacity:.4}
+    .b1{width:340px;height:340px;background:var(--pink-3);top:-60px;right: -40px;border-radius:50%}
+    .b2{width:280px;height:280px;background:#ffe5ee;bottom:-40px;left:-60px;border-radius:50%}
+
+    /* מעטפת תוכן */
+    .app{position:relative;z-index:1;display:none}
+    header{min-height:92vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;text-align:center}
+    .title{font-size:48px;line-height:1.05;margin:0 0 12px;color:var(--rose);letter-spacing:1px}
+    .subtitle{margin:0;color:#444;font-weight:700}
+    .meta{margin-top:10px;color:var(--muted)}
+    .actions{display:flex;gap:10px;margin-top:18px;justify-content:center}
+
+    /* מקטעי טקסט/ברכה */
+    section{padding:36px 18px}
+    .sec{max-width:880px;margin:0 auto}
+    .card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:780px){.grid.cols-2{grid-template-columns:1fr}}
+    .h{margin:0 0 12px;color:var(--pink);font-size:22px}
+    .p{white-space:pre-line;line-height:1.8;font-size:18px}
+
+    /* טיימליין פשוט */
+    .timeline{display:flex;gap:12px;overflow:auto;padding:6px 2px}
+    .chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--pink-3);color:#333;padding:10px 14px;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
+
+    /* גלריה */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media(max-width:780px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    .polaroid{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:8px 8px 24px;transform-style:preserve-3d}
+    .polaroid img{width:100%;height:160px;object-fit:cover;border-radius:12px;background:#ffeaf2;border:2px dashed var(--pink-3)}
+    .polaroid .cap{position:absolute;bottom:6px;left:0;right:0;text-align:center;color:#444;font-weight:700;font-size:13px}
+
+    /* מחולל מחמאות */
+    .compliment{font-size:20px;font-weight:800;color:#333;min-height:28px}
+
+    /* אודיו */
+    .audio-card audio{width:100%}
+
+    /* כפתור חשיפה */
+    .reveal-btn{font-size:18px}
+
+    /* קונפטי לבבות (CSS) */
+    .hearts{position:fixed;inset:0;pointer-events:none;z-index:7777}
+    .heart{position:absolute;font-size:18px;animation:floatUp 2.4s ease-in forwards}
+    @keyframes floatUp{from{transform:translateY(0) scale(.9);opacity:.95} to{transform:translateY(-120vh) scale(1.3);opacity:0}}
+
+    /* חותמת */
+    .stamp{display:inline-block;transform:rotate(-3deg);border:3px solid var(--rose);padding:6px 10px;border-radius:10px;color:var(--rose);font-weight:900}
+
+    /* מוסריות נגישות */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* העלמת סגול על כל מצב */
+    /* אין שימוש בגוונים סגולים. */
+  </style>
+</head>
+<body>
+  <!-- עיטורים עדינים -->
+  <div class="decor" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+  </div>
+
+  <!-- שער סיסמה -->
+  <div id="gate" class="gate">
+    <div class="card">
+      <h1>🔒 היי! יש כאן הפתעה שמורה לעמית</h1>
+      <p>הכניסי סיסמה כדי להיכנס 💗</p>
+      <div class="row">
+        <input id="pw" class="input" type="password" placeholder="סיסמה" autocomplete="current-password" aria-label="סיסמה" />
+        <button class="btn" id="enterBtn">כניסה</button>
+      </div>
+      <div id="err" class="error">סיסמה שגויה. נסי שוב 🙂</div>
+      <p class="hint" id="previewHint" style="display:none">מצב תצוגה מוקדמת פעיל.</p>
+    </div>
+  </div>
+
+  <!-- ספירה לאחור (חסום עד יום ההולדת) -->
+  <div id="countdown" class="countdown">
+    <div>
+      <h2>🎂 זה כמעט כאן! ההפתעה נפתחת ב־20/10/2025</h2>
+      <div class="clock" id="clock"></div>
+      <div class="hint">נכנסים עם הסיסמה, ואז ההפתעה תפתח בתאריך — עד אז מותר רק להציץ בשעון 😉</div>
+    </div>
+  </div>
+
+  <!-- האפליקציה -->
+  <main id="app" class="app" aria-live="polite">
+    <header class="sec">
+      <h1 class="title" id="bigTitle">עמיתוווו</h1>
+      <p class="subtitle">חוגגת 22 · 20/10/2003</p>
+      <p class="meta">מוכנה להפתעה? לחצי👇</p>
+      <div class="actions">
+        <button class="btn reveal-btn" id="reveal">פתחי את ההפתעה 🎁</button>
+        <button class="btn ghost" id="playSong">נגן את השיר 🎵</button>
+      </div>
+    </header>
+
+    <!-- מוזיקה -->
+    <section class="sec">
+      <div class="card audio-card">
+        <h3 class="h">🎶 השיר שלנו: Pop Danthology 2012</h3>
+        <audio id="song" preload="none" controls src="assets/pop-danthology-2012.mp3">
+          הדפדפן שלך אינו תומך בנגן אודיו.
+        </audio>
+        <p class="hint">ב־iPhone צריך לגעת בכפתור ניגון כדי להתחיל.</p>
+      </div>
+    </section>
+
+    <!-- טיימליין/מקומות משמעותיים -->
+    <section class="sec">
+      <div class="card">
+        <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
+        <div class="timeline" id="timeline">
+          <div class="chip">🏝️ אילת</div>
+          <div class="chip">🧂 ים המלח</div>
+          <div class="chip">🎤 הופעת עומר אדם</div>
+          <div class="chip">🌮 טאקריה תל־אביב</div>
+          <div class="chip">🏖️ הים</div>
+          <div class="chip" title="פלייסהולדר">🎸 הופעת מוניקה סקס</div>
+          <div class="chip" title="פלייסהולדר">🎶 הופעת אושר כהן</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- גלריה (פלייסהולדרים) -->
+    <section class="sec">
+      <div class="card">
+        <h3 class="h">📷 גלריית אנחנו</h3>
+        <div class="gallery" id="gallery">
+          <!-- 12 פלייסהולדרים ראשוניים -->
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 1 (בקרוב)" src="assets/photo1.jpg"><div class="cap">תמונה 1</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 2 (בקרוב)" src="assets/photo2.jpg"><div class="cap">תמונה 2</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 3 (בקרוב)" src="assets/photo3.jpg"><div class="cap">תמונה 3</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 4 (בקרוב)" src="assets/photo4.jpg"><div class="cap">תמונה 4</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 5 (בקרוב)" src="assets/photo5.jpg"><div class="cap">תמונה 5</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 6 (בקרוב)" src="assets/photo6.jpg"><div class="cap">תמונה 6</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 7 (בקרוב)" src="assets/photo7.jpg"><div class="cap">תמונה 7</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 8 (בקרוב)" src="assets/photo8.jpg"><div class="cap">תמונה 8</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 9 (בקרוב)" src="assets/photo9.jpg"><div class="cap">תמונה 9</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 10 (בקרוב)" src="assets/photo10.jpg"><div class="cap">תמונה 10</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 11 (בקרוב)" src="assets/photo11.jpg"><div class="cap">תמונה 11</div></div>
+          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 12 (בקרוב)" src="assets/photo12.jpg"><div class="cap">תמונה 12</div></div>
+        </div>
+        <p class="hint">כשתהיה מוכן, החלף את קבצי <code>assets/photoX.jpg</code> בתמונות האמיתיות (מומלץ WebP).</p>
+      </div>
+    </section>
+
+    <!-- מחולל מחמאות -->
+    <section class="sec">
+      <div class="card">
+        <h3 class="h">💬 מחולל מחמאות לעמית</h3>
+        <div class="compliment" id="compliment">לחצי על הכפתור…</div>
+        <div class="actions" style="margin-top:12px">
+          <button class="btn" id="nextCompliment">תני לי מחמאה 🎁</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- הברכה — מקטעים עם אפקטים שונים -->
+    <section class="sec">
+      <div class="grid cols-2">
+        <div class="card" data-effect="type">
+          <div class="p">עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
+קודם כל מלא מלא מזל טובבבבב!!❤❤</div>
+        </div>
+        <div class="card" data-effect="cascade">
+          <div class="p">אז עמיתי,
+אני רוצה לאחל לך באמת את כל הטוב שהעולם יכול להציע לך.
+את האישה הכי מיוחדת, מדהימה, אוהבת, אכפתית, מתחשבת, מצחיקה, יפה, חזקה, חכמה ומכילה שקיימת בעולם הזה!
+אה וכמעט שכחתי, את הכי כשרונית בעולם!!!
+לא ברור איך בן אדם עם כל כך הרבה תכונות באופי שלו יכול לחשוב שאין לו אופי🤷‍♂🤦‍♂
+את פשוט הכי טובה עמית!!!!!</div>
+        </div>
+        <div class="card" data-effect="flip">
+          <div class="p">את חברה מדהימה, יודעת להקשיב כשצריך, יודעת להצחיק כשצריך, יודעת לתת בראש ולנער כשצריך ותמיד אבל תמיד פה בשבילי לכל דבר!
+את הבן אדם שאני פורק לו כשרע לי, הבן אדם שאני רץ לספר לו כשקורה לי משהו טוב, את באמת כמו הפסיכולוגית האישית שלי!!
+כל אחד צריך עמיתי בחיים שלו שתסדר לו את המוח.</div>
+        </div>
+        <div class="card" data-effect="timeline">
+          <div class="p">אומנם אנחנו מכירים רק שנה אבל זאת בהחלט הייתה שנה מלאה בחוויות מטורפות בקשר שלנו.
+אני מודה עלייך כל יום שנכנסת לחיים שלי ולימדת אותי מחדש את הערך של המילה ״חברות״.</div>
+        </div>
+        <div class="card" data-effect="reveal">
+          <div class="p">את גרמת לי להיפתח מחדש ולהכניס אותך לחיים שלי,  אחרי תקופה ארוכה שלא הצלחתי לייצר קשרים חדשים, בגלל כמה אנשים שקראתי להם חברים שלי ובאמת שברו לי את הלב.
+הראת לי באמת איזה אנשים אני רוצה שיהיו סביבי ומה מגיע לי באמת, הראת לי שמגיע לי אנשים כמוך!!!( והלוואי והיה יותר )</div>
+        </div>
+        <div class="card" data-effect="highlight">
+          <div class="p">אני מאחל לך שרק תמשיכי להתפתח, לחוות ולגדול.
+אני מכיר אותך שנה ובשנה הזאת ראיתי אותך פורחת ומתגברת על הפחדים שלך, שוברת גבולות ואני הכי גאה בך בעולם!!
+את הרבה פעמים חושבת שאת פחות מאנשים אחרים ומורידה לעצמך וזה פאקינג לא נכון!! אז תפסיקי עם זה!! את עמית אוחיון, את הבן אדם הכי מושלם שקיים בעולם הזה ומי שאומר אחרת מנותק…</div>
+        </div>
+        <div class="card" data-effect="sparkle">
+          <div class="p">אני יודע שעברת כל כך הרבה בחיים ואת פאקינג גיבורה מטורפת שאחרי כל זה את קמה בבוקר מחייכת ושמה זין על העולם ועדיין עם כל זה את פשוט הבן אדם הכי טוב שאני מכיר!
+אם זה לחייך לשומר בחניון או למוכר במכולת,
+לדאוג לכל החברים שלך, לשקר שבאלך לעשות דברים רק כי מישהו אחר רוצה לעשות את זה, או סתם להיות חמודה לאנשים רנדומליים.
+אני יכול להמשיך פה לנצח להגיד כמה טובה ומדהימה ואני מקווה ובטוח שלאט לאט תביני בעצמך כמה את מטורפת ומדהימה, כי אין טובים כמוך וממך!</div>
+        </div>
+        <div class="card" data-effect="mask">
+          <div class="p">אני יודע שאני יכול לסמוך עלייך בהכל! את הבן אדם שיודע עלי הכי הרבה דברים, את השריטות הכי עמוקות שלי וגם את הדברים הכי טובים.
+את בין האנשים היחידים בעולם הזה שנותנים לי להרגיש שאני יכול להיות אני האמיתי, בלי שום מסכה ובלי שום פוזה. פשוט אני!</div>
+        </div>
+        <div class="card" data-effect="stamp">
+          <div class="p">אנחנו מכירים כבר שנה  וככל שעובר הזמן אני מבין שאנחנו תקועים אחד עם השנייה לתמיד!!
+וששום ריב או וויכוח לא יצליח להרוס את החברות שיש בנינו, כי הקשר שלנו הוא פשוט חברות אמת ולכל החיים!!</div>
+        </div>
+        <div class="card" data-effect="checklist">
+          <div class="p">אני בתקופה האחרונה עברתי הרבה שינויים בחיים שלי, וזאת הייתה תקופה מאוד מסובכת בשבילי שלא נשארתי עם הרבה אנשים בחיים שלי, ואת פשוט תמיד היית פה בשבילי כשהייתי צריך.
+
+ועכשיו קצת תודות כי מגיע לך!
+
+אז תודה עמיתי❤
+קודם כל תודה שסמכת עלי מלכתחילה כי זה לא מובן מאליו שתסמכי ככה על גבר,
+תודה שנפתחת בפני וסיפרת לי על עצמך,
+תודה על שהיית שם לעזור לי כשהייתי צריך, 
+תודה שהצחקת אותי כשהייתי עצוב, 
+תודה שידעת להיות כרצינית שצריך, 
+תודה שהיית לידי ברגעים הקשים,
+תודה שסבלת אותי כשהייתי בילתי נסבל ( יודע שאני יכול להיות כזה הרבה פעמים ),
+תודה על איך פגשתי את אמא ועוד מלא סדרות,
+תודה על טעם נהדר בשירים,
+תודה שקידמת אותי בכל כך הרבה דברים,
+ורשימת התודות לא תיגמר בחיים כנראה, אז פשוט תודה! תודה על מי ומה שאת ❤.
+אז עמית באמת פשוט תודה על מי ומה שאת בשבילי!!!! 
+ואל תשתני בחיים, כי את מושלמת כמו שאת!!!</div>
+        </div>
+        <div class="card" data-effect="finale">
+          <div class="p">מזכיר לך שאני פה תמיד בשבילך לכל דבר ובכל זמן שאת צריכה!!!
+והדבר האחרון והכי חשוב לי, אני מאחל לשנינו לשמור על אותו קשר קרוב כזה ובחיים לא לריב, אבל באמת בחיים!
+
+ אוהב אותך הכי בעולם עמיתי!!❤‍🔥😍😘</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- פוטר קטן -->
+    <section class="sec" style="padding-bottom:80px">
+      <div class="card" style="text-align:center">
+        <p class="hint">נבנה באהבה. צבעים: ורוד/לבן בלבד. אין סגול 🙅‍♀️</p>
+      </div>
+    </section>
+
+    <!-- שכבת לבבות -->
+    <div id="hearts" class="hearts" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    // ===================
+    //   Utilities
+    // ===================
+    const sleep = (ms)=> new Promise(r=>setTimeout(r,ms));
+    const qs = (s,el=document)=> el.querySelector(s);
+    const qsa = (s,el=document)=> [...el.querySelectorAll(s)];
+
+    // Password: SHA-256("amito22")
+    const PASSWORD_HASH = "4a46b0304f5d192b82dfe73eeebbbe2c0ac569338a14c09e17643ad14709b3cd";
+    const BDAY_ISO = "2025-10-20T00:00:00+03:00"; // Asia/Jerusalem, לפני סיום שעון קיץ
+
+    const $gate = qs('#gate');
+    const $err = qs('#err');
+    const $countdown = qs('#countdown');
+    const $clock = qs('#clock');
+    const $app = qs('#app');
+    const $song = qs('#song');
+    const $playSong = qs('#playSong');
+    const $reveal = qs('#reveal');
+    const $hearts = qs('#hearts');
+    const $previewHint = qs('#previewHint');
+
+    // Simple URL param check for preview (for creator only)
+    const url = new URL(location.href);
+    const isPreview = url.searchParams.get('preview') === '1';
+
+    if(isPreview){ $previewHint.style.display = 'block'; }
+
+    // Hash helper
+    async function sha256Hex(str){
+      const enc = new TextEncoder();
+      const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+      const arr = Array.from(new Uint8Array(buf));
+      return arr.map(b=>b.toString(16).padStart(2,'0')).join('');
+    }
+
+    // Gate flow
+    async function handleEnter(){
+      const pw = qs('#pw').value || '';
+      const hex = await sha256Hex(pw);
+      if(hex !== PASSWORD_HASH){
+        $err.style.display = 'block';
+        return;
+      }
+      $err.style.display = 'none';
+
+      // לאחר אימות סיסמה — בדיקת תאריך
+      const now = new Date();
+      const target = new Date(BDAY_ISO);
+      if(now < target && !isPreview){
+        // ספירה לאחור בלבד עד התאריך
+        $gate.style.display = 'none';
+        $countdown.style.display = 'flex';
+        startCountdown(target);
+      } else {
+        // כניסה מלאה
+        $gate.style.display = 'none';
+        startApp();
+      }
+    }
+
+    qs('#enterBtn').addEventListener('click', handleEnter);
+    qs('#pw').addEventListener('keydown', e=>{ if(e.key==='Enter') handleEnter(); });
+
+    function startCountdown(target){
+      function tick(){
+        const now = new Date();
+        let diff = Math.max(0, target - now);
+        const sec = Math.floor(diff/1000)%60;
+        const min = Math.floor(diff/1000/60)%60;
+        const hr = Math.floor(diff/1000/60/60)%24;
+        const day = Math.floor(diff/1000/60/60/24);
+        $clock.innerHTML = `
+          <div class="time-box"><div class="num">${day}</div><div class="lbl">ימים</div></div>
+          <div class="time-box"><div class="num">${hr.toString().padStart(2,'0')}</div><div class="lbl">שעות</div></div>
+          <div class="time-box"><div class="num">${min.toString().padStart(2,'0')}</div><div class="lbl">דקות</div></div>
+          <div class="time-box"><div class="num">${sec.toString().padStart(2,'0')}</div><div class="lbl">שניות</div></div>`;
+        if(diff<=0){ location.reload(); }
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    // כניסת אפליקציה
+    function startApp(){
+      $app.style.display = 'block';
+      // Tilt לגלריה
+      VanillaTilt.init(document.querySelectorAll('[data-tilt]'));
+      // אנימציות GSAP
+      if(window.gsap){
+        gsap.registerPlugin(ScrollTrigger);
+        // פתיח עדין לכותרת
+        gsap.from('#bigTitle',{y:20,opacity:0,duration:.8,ease:'power2.out'});
+        // קלפים — חשיפה על גלילה
+        qsa('.card[data-effect]').forEach((el, i)=>{
+          const eff = el.dataset.effect;
+          let vars={opacity:0,y:24,duration:.7, ease:'power2.out'};
+          if(eff==='flip') vars={opacity:0,rotationY:90,transformOrigin:'50% 50%', duration:.7};
+          if(eff==='type') vars={opacity:0,y:10,duration:.6};
+          if(eff==='stamp') vars={opacity:0,scale:.9,duration:.6};
+          if(eff==='sparkle') vars={opacity:0,y:20, duration:.7};
+          if(eff==='mask') vars={opacity:0, y:10, duration:.6};
+          if(eff==='cascade') vars={opacity:0, y:16, duration:.6};
+          if(eff==='checklist') vars={opacity:0, y:18, duration:.6};
+          if(eff==='finale') vars={opacity:0, y:30, duration:.8};
+          if(eff==='reveal' || eff==='timeline' || eff==='highlight') vars={opacity:0, y:16, duration:.6};
+          gsap.from(el, { ...vars, scrollTrigger:{trigger:el, start:'top 80%'} });
+        });
+      }
+    }
+
+    // כפתורי פתיחה ושיר
+    $reveal.addEventListener('click', async ()=>{
+      // לבבות קונפטי קצר
+      heartConfetti();
+      // גלילה קלה למקטע הבא
+      await sleep(100);
+      window.scrollTo({top: window.innerHeight, behavior:'smooth'});
+    });
+    $playSong.addEventListener('click', ()=>{ $song.play().catch(()=>{}); });
+
+    // מחולל מחמאות
+    const compliments = [
+      "את הכי רזה", // לבקשתך — ניתן לשנות בהמשך
+      "הכי יפה בעולם",
+      "לב של זהב",
+      "הכי מצחיקה בחדר",
+      "חכמה בטירוף",
+      "עוצמה שקטה שנוכחת",
+      "החיבוק שלך מתקן ימים קשים",
+      "חיוך שמרים מצב רוח בשנייה",
+      "מלכת הוייב הטוב",
+      "אלופת ה'יהיה טוב — בואי נזיז את זה'",
+      "אינטואיציה של גאון",
+      "הכי אמיתית שיש",
+      "קשובה כמו פסיכולוגית, זורמת כמו חברה הכי טובה",
+      "סטייל של מיליון דולר בלי להשתדל",
+      "עושה אנשים סביבך יותר טובים",
+      "הומור שמגרש עננים",
+      "סופר-כישרונית, נקודה",
+      "מנהלת כאוס כמו בוס",
+      "לב של צ'יפס חם — ממכר",
+      "ה-GOAT של החברות",
+      "ה-MVP של השנה שלי",
+      "הכי 'אפשר לסמוך עליה' שאני מכיר",
+      "את הופכת זיכרונות לסרט",
+      "הפתעות קטנות — רגעים גדולים",
+      "אומץ שנדבק",
+      "המבט שלך אומר 'סמוך עליי' — ותמיד עובד",
+      "את עושה טוב לעולם בלי לעשות מזה עניין",
+      "אחת ויחידה — עמית אוחיון 💥"
+    ];
+    const $compliment = qs('#compliment');
+    const $nextCompliment = qs('#nextCompliment');
+    $nextCompliment.addEventListener('click', ()=>{
+      const pick = compliments[Math.floor(Math.random()*compliments.length)];
+      $compliment.textContent = pick;
+      // פופ קטן
+      if(window.gsap){ gsap.fromTo($compliment,{scale:.92,opacity:.7},{scale:1,opacity:1,duration:.2}); }
+    });
+
+    // אנימציית לבבות קלה — CSS/JS
+    function heartConfetti(){
+      const EMOJIS = ['💗','💓','💖','💞','💕','💘'];
+      for(let i=0;i<28;i++){
+        const span = document.createElement('span');
+        span.className = 'heart';
+        span.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+        const startX = Math.random()*100; // vw
+        const delay = Math.random()*300;
+        span.style.left = startX+"vw";
+        span.style.bottom = '-20px';
+        span.style.animationDelay = (delay/1000)+'s';
+        $hearts.appendChild(span);
+        setTimeout(()=> span.remove(), 2600+delay);
+      }
+    }
+
+    // בטיחות: מניעת גרירה/העתקה של תמונות כברירת מחדל בגלריה (ניתן להסיר)
+    qsa('.polaroid img').forEach(img=>{
+      img.addEventListener('dragstart', e=> e.preventDefault());
+      img.addEventListener('contextmenu', e=> e.preventDefault());
+    });
+
+    // Note: תצוגת קדם למפתח בלבד — הוספת ?preview=1 לכתובת מאפשרת לעבור את חסימת התאריך אחרי סיסמה
+  </script>
+</body>
+</html>
