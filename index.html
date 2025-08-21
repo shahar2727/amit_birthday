@@ -112,6 +112,16 @@
 
     /* העלמת סגול על כל מצב */
     /* אין שימוש בגוונים סגולים. */
+
+    /* Lightbox לתמונות מהטיימליין */
+    .timeline .chip{cursor:pointer}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:9000}
+    .lightbox.show{display:flex}
+    .lb-content{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:min(920px,96vw);width:100%;overflow:hidden}
+    .lb-content img{width:100%;height:auto;display:block;background:#ffeaf2}
+    .lb-cap{padding:10px 14px;font-weight:700;color:#444;text-align:center}
+    .lb-close{position:fixed;top:16px;left:16px;background:var(--pink);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
+
   </style>
 </head>
 <body>
@@ -167,44 +177,24 @@
       </div>
     </section>
 
-    <!-- טיימליין/מקומות משמעותיים -->
+    <!-- טיימליין/מקומות משמעותיים (לחיצים + תמונה) -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
+        <p class="hint">לחצי על רגע כדי לפתוח תמונה מהאירוע/המקום</p>
         <div class="timeline" id="timeline">
-          <div class="chip">🏝️ אילת</div>
-          <div class="chip">🧂 ים המלח</div>
-          <div class="chip">🎤 הופעת עומר אדם</div>
-          <div class="chip">🌮 טאקריה תל־אביב</div>
-          <div class="chip">🏖️ הים</div>
-          <div class="chip" title="פלייסהולדר">🎸 הופעת מוניקה סקס</div>
-          <div class="chip" title="פלייסהולדר">🎶 הופעת אושר כהן</div>
+          <button class="chip" data-photo="eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
+          <button class="chip" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — הכי מלוח והכי שלנו">🧂 ים המלח</button>
+          <button class="chip" data-photo="omer-adam.jpg" data-cap="הופעה של עומר אדם">🎤 הופעת עומר אדם</button>
+          <button class="chip" data-photo="assets/places/taqueria-tlv.jpg" data-cap="המסעדה שלנו: טאקריה תל־אביב">🌮 טאקריה תל־אביב</button>
+          <button class="chip" data-photo="assets/places/beach.jpg" data-cap="הים — המקום הכי שלנו">🏖️ הים</button>
+          <button class="chip" data-photo="assets/places/monika-seks.jpg" data-cap="הופעת מוניקה סקס (בקרוב)">🎸 הופעת מוניקה סקס</button>
+          <button class="chip" data-photo="assets/places/osher-cohen.jpg" data-cap="הופעת אושר כהן (בקרוב)">🎶 הופעת אושר כהן</button>
         </div>
       </div>
     </section>
 
-    <!-- גלריה (פלייסהולדרים) -->
-    <section class="sec">
-      <div class="card">
-        <h3 class="h">📷 גלריית אנחנו</h3>
-        <div class="gallery" id="gallery">
-          <!-- 12 פלייסהולדרים ראשוניים -->
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 1 (בקרוב)" src="assets/photo1.jpg"><div class="cap">תמונה 1</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 2 (בקרוב)" src="assets/photo2.jpg"><div class="cap">תמונה 2</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 3 (בקרוב)" src="assets/photo3.jpg"><div class="cap">תמונה 3</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 4 (בקרוב)" src="assets/photo4.jpg"><div class="cap">תמונה 4</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 5 (בקרוב)" src="assets/photo5.jpg"><div class="cap">תמונה 5</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 6 (בקרוב)" src="assets/photo6.jpg"><div class="cap">תמונה 6</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 7 (בקרוב)" src="assets/photo7.jpg"><div class="cap">תמונה 7</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 8 (בקרוב)" src="assets/photo8.jpg"><div class="cap">תמונה 8</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 9 (בקרוב)" src="assets/photo9.jpg"><div class="cap">תמונה 9</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 10 (בקרוב)" src="assets/photo10.jpg"><div class="cap">תמונה 10</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 11 (בקרוב)" src="assets/photo11.jpg"><div class="cap">תמונה 11</div></div>
-          <div class="polaroid" data-tilt data-tilt-max="8" data-tilt-scale="1.02"><img alt="תמונה 12 (בקרוב)" src="assets/photo12.jpg"><div class="cap">תמונה 12</div></div>
-        </div>
-        <p class="hint">כשתהיה מוכן, החלף את קבצי <code>assets/photoX.jpg</code> בתמונות האמיתיות (מומלץ WebP).</p>
-      </div>
-    </section>
+    
 
     <!-- מחולל מחמאות -->
     <section class="sec">
@@ -302,6 +292,15 @@
 
     <!-- שכבת לבבות -->
     <div id="hearts" class="hearts" aria-hidden="true"></div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע" style="display:none">
+      <button class="lb-close" id="lbClose" aria-label="סגירה">✕</button>
+      <div class="lb-content">
+        <img id="lbImg" alt="תמונה" loading="lazy" decoding="async" />
+        <div id="lbCap" class="lb-cap"></div>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -391,15 +390,13 @@
     // כניסת אפליקציה
     function startApp(){
       $app.style.display = 'block';
-      // Tilt לגלריה
-      VanillaTilt.init(document.querySelectorAll('[data-tilt]'));
+      // Tilt (יישאר שקט אם אין אלמנטים)
+      if(window.VanillaTilt){ VanillaTilt.init(document.querySelectorAll('[data-tilt]')); }
       // אנימציות GSAP
       if(window.gsap){
-        gsap.registerPlugin(ScrollTrigger);
-        // פתיח עדין לכותרת
+        if(window.ScrollTrigger){ gsap.registerPlugin(ScrollTrigger); }
         gsap.from('#bigTitle',{y:20,opacity:0,duration:.8,ease:'power2.out'});
-        // קלפים — חשיפה על גלילה
-        qsa('.card[data-effect]').forEach((el, i)=>{
+        qsa('.card[data-effect]').forEach((el)=>{
           const eff = el.dataset.effect;
           let vars={opacity:0,y:24,duration:.7, ease:'power2.out'};
           if(eff==='flip') vars={opacity:0,rotationY:90,transformOrigin:'50% 50%', duration:.7};
@@ -414,6 +411,8 @@
           gsap.from(el, { ...vars, scrollTrigger:{trigger:el, start:'top 80%'} });
         });
       }
+      // חיבור טיימליין ללייטבוקס
+      setupTimelineLightbox();
     }
 
     // כפתורי פתיחה ושיר
@@ -490,6 +489,57 @@
     });
 
     // Note: תצוגת קדם למפתח בלבד — הוספת ?preview=1 לכתובת מאפשרת לעבור את חסימת התאריך אחרי סיסמה
+
+    // ===================
+    //   Lightbox לתמונות טיימליין
+    // ===================
+    const $lightbox = qs('#lightbox');
+    const $lbImg = qs('#lbImg');
+    const $lbCap = qs('#lbCap');
+    const $lbClose = qs('#lbClose');
+
+    function openLightbox(src, cap){
+      if(!src) return;
+      $lbCap.textContent = cap || '';
+      // נסה נתיב כפי שהוא; אם נכשל, נסה מסלולים חלופיים (שורש/תיקייה)
+      const candidates = [src];
+      const baseName = src.split('/').pop();
+      if(!src.startsWith('assets/places/')) candidates.push('assets/places/'+baseName);
+      if(src.startsWith('assets/places/')) candidates.push(baseName);
+      let i = 0;
+      $lbImg.onerror = ()=>{
+        if(i < candidates.length){
+          $lbImg.src = candidates[i++];
+        } else {
+          $lbCap.textContent = 'לא נמצאה תמונה בנתיב: '+src;
+        }
+      };
+      i = 1; // כבר נטען הראשון ידנית למטה
+      $lbImg.src = candidates[0];
+      $lightbox.classList.add('show');
+    }
+    function closeLightbox(){
+      $lightbox.classList.remove('show');
+      $lbImg.src = '';
+    }
+    $lbClose.addEventListener('click', closeLightbox);
+    $lightbox.addEventListener('click', (e)=>{ if(e.target===$lightbox) closeLightbox(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+
+    function setupTimelineLightbox(){
+      qsa('#timeline .chip').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const src = btn.dataset.photo;
+          const cap = btn.dataset.cap || btn.textContent.trim();
+          openLightbox(src, cap);
+        });
+        // נגישות בסיסית: הקשה Enter
+        btn.addEventListener('keydown', (e)=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); btn.click(); }
+        });
+      });
+    }
+
   </script>
 </body>
 </html>
