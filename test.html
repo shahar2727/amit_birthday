@@ -113,30 +113,14 @@
     /* העלמת סגול על כל מצב */
     /* אין שימוש בגוונים סגולים. */
 
-    /* === הרחבות עיצוב: לוח צורות + לייטבוקס === */
+    /* Lightbox לתמונות מהטיימליין */
     .timeline .chip{cursor:pointer}
-
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:9000}
     .lightbox.show{display:flex}
     .lb-content{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:min(920px,96vw);width:100%;overflow:hidden}
     .lb-content img{width:100%;height:auto;display:block;background:#ffeaf2}
     .lb-cap{padding:10px 14px;font-weight:700;color:#444;text-align:center}
     .lb-close{position:fixed;top:16px;left:16px;background:var(--pink);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
-
-    .bless-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-    @media(max-width:680px){.bless-board{grid-template-columns:repeat(3,1fr)}}
-    .shape{display:flex;align-items:center;justify-content:center;height:84px;background:#fff;border:2px solid var(--pink-3);border-radius:16px;font-size:28px;font-weight:900;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease}
-    .shape:active{transform:scale(.98)}
-    .shape.done{opacity:.5;cursor:default}
-    .shape.circle{border-radius:999px}
-    .shape.heart{background:linear-gradient(180deg,#fff,var(--pink-2))}
-    .shape.star{clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-
-    .bless-out{margin-top:16px;display:grid;gap:12px}
-    .bless-card{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:16px;white-space:pre-line;line-height:1.9}
-    .progress{position:relative;height:10px;background:#ffeaf2;border-radius:999px;overflow:hidden;margin-top:8px}
-    .progress .bar{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--pink);transition:width .3s ease}
-    .progress .pct{margin-top:8px;color:var(--muted);font-size:14px}
 
   </style>
 </head>
@@ -154,7 +138,7 @@
       <p>הכניסי סיסמה כדי להיכנס 💗</p>
       <div class="row">
         <input id="pw" class="input" type="password" placeholder="סיסמה" autocomplete="current-password" aria-label="סיסמה" />
-        <button class="btn" id="enterBtn" type="button">כניסה</button>
+        <button class="btn" id="enterBtn">כניסה</button>
       </div>
       <div id="err" class="error">סיסמה שגויה. נסי שוב 🙂</div>
       <p class="hint" id="previewHint" style="display:none">מצב תצוגה מוקדמת פעיל.</p>
@@ -193,15 +177,15 @@
       </div>
     </section>
 
-    <!-- טיימליין/מקומות משמעותיים (לחיצים עם תמונה) -->
+    <!-- טיימליין/מקומות משמעותיים (לחיצים + תמונה) -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה מהאירוע/המקום</p>
         <div class="timeline" id="timeline">
           <button class="chip" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
-          <button class="chip" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ים המלח הכי מלוח והכי שלנו">🧂 ים המלח</button>
-          <button class="chip" data-photo="assets/places/omer-adam.jpg" data-cap="הופעה של עומר אדם — אנחנו צועקים את המילים">🎤 הופעת עומר אדם</button>
+          <button class="chip" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — הכי מלוח והכי שלנו">🧂 ים המלח</button>
+          <button class="chip" data-photo="assets/places/omer-adam.jpg" data-cap="הופעה של עומר אדם">🎤 הופעת עומר אדם</button>
           <button class="chip" data-photo="assets/places/taqueria-tlv.jpg" data-cap="המסעדה שלנו: טאקריה תל־אביב">🌮 טאקריה תל־אביב</button>
           <button class="chip" data-photo="assets/places/beach.jpg" data-cap="הים — המקום הכי שלנו">🏖️ הים</button>
           <button class="chip" data-photo="assets/places/monika-seks.jpg" data-cap="הופעת מוניקה סקס (בקרוב)">🎸 הופעת מוניקה סקס</button>
@@ -223,26 +207,79 @@
       </div>
     </section>
 
-    <!-- הברכה — לוח צורות אינטראקטיבי -->
+    <!-- הברכה — מקטעים עם אפקטים שונים -->
     <section class="sec">
-      <div class="card">
-        <h3 class="h">💝 הברכה — פותחים בצורות</h3>
-        <p class="hint clickable">כל צורה פותחת חלק אחר (עם אפקט שונה).</p>
-        <div class="progress"><div class="bar" id="blessBar" style="width:0%"></div><div class="pct" id="blessPct">0 / 11</div></div>
-        <div class="bless-board" id="blessBoard">
-          <button class="shape heart" data-index="0" data-effect="type" aria-label="חלק 1">❤️</button>
-          <button class="shape circle" data-index="1" data-effect="cascade" aria-label="חלק 2">●</button>
-          <button class="shape star" data-index="2" data-effect="flip" aria-label="חלק 3">★</button>
-          <button class="shape" data-index="3" data-effect="timeline" aria-label="חלק 4">⏱️</button>
-          <button class="shape circle" data-index="4" data-effect="reveal" aria-label="חלק 5">◯</button>
-          <button class="shape heart" data-index="5" data-effect="highlight" aria-label="חלק 6">💖</button>
-          <button class="shape star" data-index="6" data-effect="sparkle" aria-label="חלק 7">✦</button>
-          <button class="shape circle" data-index="7" data-effect="mask" aria-label="חלק 8">●</button>
-          <button class="shape" data-index="8" data-effect="stamp" aria-label="חלק 9">🏷️</button>
-          <button class="shape heart" data-index="9" data-effect="checklist" aria-label="חלק 10">💗</button>
-          <button class="shape" data-index="10" data-effect="finale" aria-label="חלק 11">🎬</button>
+      <div class="grid cols-2">
+        <div class="card" data-effect="type">
+          <div class="p">עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
+קודם כל מלא מלא מזל טובבבבב!!❤❤</div>
         </div>
-        <div class="bless-out" id="blessOut" aria-live="polite"></div>
+        <div class="card" data-effect="cascade">
+          <div class="p">אז עמיתי,
+אני רוצה לאחל לך באמת את כל הטוב שהעולם יכול להציע לך.
+את האישה הכי מיוחדת, מדהימה, אוהבת, אכפתית, מתחשבת, מצחיקה, יפה, חזקה, חכמה ומכילה שקיימת בעולם הזה!
+אה וכמעט שכחתי, את הכי כשרונית בעולם!!!
+לא ברור איך בן אדם עם כל כך הרבה תכונות באופי שלו יכול לחשוב שאין לו אופי🤷‍♂🤦‍♂
+את פשוט הכי טובה עמית!!!!!</div>
+        </div>
+        <div class="card" data-effect="flip">
+          <div class="p">את חברה מדהימה, יודעת להקשיב כשצריך, יודעת להצחיק כשצריך, יודעת לתת בראש ולנער כשצריך ותמיד אבל תמיד פה בשבילי לכל דבר!
+את הבן אדם שאני פורק לו כשרע לי, הבן אדם שאני רץ לספר לו כשקורה לי משהו טוב, את באמת כמו הפסיכולוגית האישית שלי!!
+כל אחד צריך עמיתי בחיים שלו שתסדר לו את המוח.</div>
+        </div>
+        <div class="card" data-effect="timeline">
+          <div class="p">אומנם אנחנו מכירים רק שנה אבל זאת בהחלט הייתה שנה מלאה בחוויות מטורפות בקשר שלנו.
+אני מודה עלייך כל יום שנכנסת לחיים שלי ולימדת אותי מחדש את הערך של המילה ״חברות״.</div>
+        </div>
+        <div class="card" data-effect="reveal">
+          <div class="p">את גרמת לי להיפתח מחדש ולהכניס אותך לחיים שלי,  אחרי תקופה ארוכה שלא הצלחתי לייצר קשרים חדשים, בגלל כמה אנשים שקראתי להם חברים שלי ובאמת שברו לי את הלב.
+הראת לי באמת איזה אנשים אני רוצה שיהיו סביבי ומה מגיע לי באמת, הראת לי שמגיע לי אנשים כמוך!!!( והלוואי והיה יותר )</div>
+        </div>
+        <div class="card" data-effect="highlight">
+          <div class="p">אני מאחל לך שרק תמשיכי להתפתח, לחוות ולגדול.
+אני מכיר אותך שנה ובשנה הזאת ראיתי אותך פורחת ומתגברת על הפחדים שלך, שוברת גבולות ואני הכי גאה בך בעולם!!
+את הרבה פעמים חושבת שאת פחות מאנשים אחרים ומורידה לעצמך וזה פאקינג לא נכון!! אז תפסיקי עם זה!! את עמית אוחיון, את הבן אדם הכי מושלם שקיים בעולם הזה ומי שאומר אחרת מנותק…</div>
+        </div>
+        <div class="card" data-effect="sparkle">
+          <div class="p">אני יודע שעברת כל כך הרבה בחיים ואת פאקינג גיבורה מטורפת שאחרי כל זה את קמה בבוקר מחייכת ושמה זין על העולם ועדיין עם כל זה את פשוט הבן אדם הכי טוב שאני מכיר!
+אם זה לחייך לשומר בחניון או למוכר במכולת,
+לדאוג לכל החברים שלך, לשקר שבאלך לעשות דברים רק כי מישהו אחר רוצה לעשות את זה, או סתם להיות חמודה לאנשים רנדומליים.
+אני יכול להמשיך פה לנצח להגיד כמה טובה ומדהימה ואני מקווה ובטוח שלאט לאט תביני בעצמך כמה את מטורפת ומדהימה, כי אין טובים כמוך וממך!</div>
+        </div>
+        <div class="card" data-effect="mask">
+          <div class="p">אני יודע שאני יכול לסמוך עלייך בהכל! את הבן אדם שיודע עלי הכי הרבה דברים, את השריטות הכי עמוקות שלי וגם את הדברים הכי טובים.
+את בין האנשים היחידים בעולם הזה שנותנים לי להרגיש שאני יכול להיות אני האמיתי, בלי שום מסכה ובלי שום פוזה. פשוט אני!</div>
+        </div>
+        <div class="card" data-effect="stamp">
+          <div class="p">אנחנו מכירים כבר שנה  וככל שעובר הזמן אני מבין שאנחנו תקועים אחד עם השנייה לתמיד!!
+וששום ריב או וויכוח לא יצליח להרוס את החברות שיש בנינו, כי הקשר שלנו הוא פשוט חברות אמת ולכל החיים!!</div>
+        </div>
+        <div class="card" data-effect="checklist">
+          <div class="p">אני בתקופה האחרונה עברתי הרבה שינויים בחיים שלי, וזאת הייתה תקופה מאוד מסובכת בשבילי שלא נשארתי עם הרבה אנשים בחיים שלי, ואת פשוט תמיד היית פה בשבילי כשהייתי צריך.
+
+ועכשיו קצת תודות כי מגיע לך!
+
+אז תודה עמיתי❤
+קודם כל תודה שסמכת עלי מלכתחילה כי זה לא מובן מאליו שתסמכי ככה על גבר,
+תודה שנפתחת בפני וסיפרת לי על עצמך,
+תודה על שהיית שם לעזור לי כשהייתי צריך, 
+תודה שהצחקת אותי כשהייתי עצוב, 
+תודה שידעת להיות כרצינית שצריך, 
+תודה שהיית לידי ברגעים הקשים,
+תודה שסבלת אותי כשהייתי בילתי נסבל ( יודע שאני יכול להיות כזה הרבה פעמים ),
+תודה על איך פגשתי את אמא ועוד מלא סדרות,
+תודה על טעם נהדר בשירים,
+תודה שקידמת אותי בכל כך הרבה דברים,
+ורשימת התודות לא תיגמר בחיים כנראה, אז פשוט תודה! תודה על מי ומה שאת ❤.
+אז עמית באמת פשוט תודה על מי ומה שאת בשבילי!!!! 
+ואל תשתני בחיים, כי את מושלמת כמו שאת!!!</div>
+        </div>
+        <div class="card" data-effect="finale">
+          <div class="p">מזכיר לך שאני פה תמיד בשבילך לכל דבר ובכל זמן שאת צריכה!!!
+והדבר האחרון והכי חשוב לי, אני מאחל לשנינו לשמור על אותו קשר קרוב כזה ובחיים לא לריב, אבל באמת בחיים!
+
+ אוהב אותך הכי בעולם עמיתי!!❤‍🔥😍😘</div>
+        </div>
       </div>
     </section>
 
@@ -256,7 +293,7 @@
     <!-- שכבת לבבות -->
     <div id="hearts" class="hearts" aria-hidden="true"></div>
 
-    <!-- Lightbox / תצוגת תמונה גדולה -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע" style="display:none">
       <button class="lb-close" id="lbClose" aria-label="סגירה">✕</button>
       <div class="lb-content">
@@ -297,59 +334,20 @@
 
     // Hash helper
     async function sha256Hex(str){
-      try{
-        if(window.crypto && window.crypto.subtle){
-          const enc = new TextEncoder();
-          const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
-          const arr = Array.from(new Uint8Array(buf));
-          return arr.map(b=>b.toString(16).padStart(2,'0')).join('');
-        }
-      }catch(e){ /* ייפול לפולבאק */ }
-      return null; // אין WebCrypto
-    }
-
-    // בדיקת סיסמה: WebCrypto ואם אין — פולבאק לוקאלי (לבדיקות/offline)
-    const PW_FALLBACK = ['a','m','i','t','o','2','2'].join('');
-    async function checkPassword(pw){
-      // בדיקה ישירה קודם (נוח ל-iPhone/קבצים מקומיים), ואם לא — בדיקת האש אם זמינה
-      if(pw === 'amito22') return true;
-      const hex = await sha256Hex(pw);
-      if(hex) return hex === PASSWORD_HASH;
-      return false;
+      const enc = new TextEncoder();
+      const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+      const arr = Array.from(new Uint8Array(buf));
+      return arr.map(b=>b.toString(16).padStart(2,'0')).join('');
     }
 
     // Gate flow
     async function handleEnter(){
-      const btn = qs('#enterBtn');
       const pw = qs('#pw').value || '';
-      btn.disabled = true; btn.textContent = 'בודק…';
-      try{
-        const ok = await checkPassword(pw);
-        if(!ok){
-          $err.style.display = 'block';
-          return;
-        }
-        $err.style.display = 'none';
-
-        // לאחר אימות סיסמה — בדיקת תאריך
-        const now = new Date();
-        const target = new Date(BDAY_ISO);
-        if(now < target && !isPreview){
-          $gate.style.display = 'none';
-          $countdown.style.display = 'flex';
-          startCountdown(target);
-        } else {
-          $gate.style.display = 'none';
-          startApp();
-        }
-      } catch(e){
-        console.error('Password check failed:', e);
-        $err.textContent = 'ארעה תקלה בבדיקת הסיסמה. נסי/נסה לרענן או לפתוח עם ‎https://‎';
+      const hex = await sha256Hex(pw);
+      if(hex !== PASSWORD_HASH){
         $err.style.display = 'block';
-      } finally{
-        btn.disabled = false; btn.textContent = 'כניסה';
+        return;
       }
-    }
       $err.style.display = 'none';
 
       // לאחר אימות סיסמה — בדיקת תאריך
@@ -368,8 +366,6 @@
     }
 
     qs('#enterBtn').addEventListener('click', handleEnter);
-    // תמיכה בטאץ' (iOS) במידה ויש באגים עם click
-    qs('#enterBtn').addEventListener('touchend', (e)=>{ e.preventDefault(); handleEnter(); }, {passive:false});
     qs('#pw').addEventListener('keydown', e=>{ if(e.key==='Enter') handleEnter(); });
 
     function startCountdown(target){
@@ -394,15 +390,13 @@
     // כניסת אפליקציה
     function startApp(){
       $app.style.display = 'block';
-      // Tilt לגלריה (אם יהיו אלמנטים רלוונטיים)
-      if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll('[data-tilt]'));
-      }
+      // Tilt (יישאר שקט אם אין אלמנטים)
+      if(window.VanillaTilt){ VanillaTilt.init(document.querySelectorAll('[data-tilt]')); }
       // אנימציות GSAP
       if(window.gsap){
-        gsap.registerPlugin(ScrollTrigger);
+        if(window.ScrollTrigger){ gsap.registerPlugin(ScrollTrigger); }
         gsap.from('#bigTitle',{y:20,opacity:0,duration:.8,ease:'power2.out'});
-        qsa('.card[data-effect]').forEach((el, i)=>{
+        qsa('.card[data-effect]').forEach((el)=>{
           const eff = el.dataset.effect;
           let vars={opacity:0,y:24,duration:.7, ease:'power2.out'};
           if(eff==='flip') vars={opacity:0,rotationY:90,transformOrigin:'50% 50%', duration:.7};
@@ -417,9 +411,8 @@
           gsap.from(el, { ...vars, scrollTrigger:{trigger:el, start:'top 80%'} });
         });
       }
-      // תוספות חדשות
+      // חיבור טיימליין ללייטבוקס
       setupTimelineLightbox();
-      setupBlessingBoard();
     }
 
     // כפתורי פתיחה ושיר
@@ -506,7 +499,7 @@
     const $lbClose = qs('#lbClose');
 
     function openLightbox(src, cap){
-      if(!src){ return; }
+      if(!src) return;
       $lbImg.src = src; $lbCap.textContent = cap || '';
       $lightbox.classList.add('show');
     }
@@ -523,126 +516,11 @@
         btn.addEventListener('click', ()=>{
           const src = btn.dataset.photo;
           const cap = btn.dataset.cap || btn.textContent.trim();
-          if(!src){ return; }
           openLightbox(src, cap);
         });
-      });
-    }
-
-    // ===================
-    //   לוח צורות — הברכה אינטראקטיבי
-    // ===================
-    const blessingParts = [
-      `עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
-קודם כל מלא מלא מזל טובבבבב!!❤❤`,
-      `אז עמיתי,
-אני רוצה לאחל לך באמת את כל הטוב שהעולם יכול להציע לך.
-את האישה הכי מיוחדת, מדהימה, אוהבת, אכפתית, מתחשבת, מצחיקה, יפה, חזקה, חכמה ומכילה שקיימת בעולם הזה!
-אה וכמעט שכחתי, את הכי כשרונית בעולם!!!
-לא ברור איך בן אדם עם כל כך הרבה תכונות באופי שלו יכול לחשוב שאין לו אופי🤷‍♂🤦‍♂
-את פשוט הכי טובה עמית!!!!!`,
-      `את חברה מדהימה, יודעת להקשיב כשצריך, יודעת להצחיק כשצריך, יודעת לתת בראש ולנער כשצריך ותמיד אבל תמיד פה בשבילי לכל דבר!
-את הבן אדם שאני פורק לו כשרע לי, הבן אדם שאני רץ לספר לו כשקורה לי משהו טוב, את באמת כמו הפסיכולוגית האישית שלי!!
-כל אחד צריך עמיתי בחיים שלו שתסדר לו את המוח.`,
-      `אומנם אנחנו מכירים רק שנה אבל זאת בהחלט הייתה שנה מלאה בחוויות מטורפות בקשר שלנו.
-אני מודה עלייך כל יום שנכנסת לחיים שלי ולימדת אותי מחדש את הערך של המילה ״חברות״.`,
-      `את גרמת לי להיפתח מחדש ולהכניס אותך לחיים שלי,  אחרי תקופה ארוכה שלא הצלחתי לייצר קשרים חדשים, בגלל כמה אנשים שקראתי להם חברים שלי ובאמת שברו לי את הלב.
-הראת לי באמת איזה אנשים אני רוצה שיהיו סביבי ומה מגיע לי באמת, הראת לי שמגיע לי אנשים כמוך!!!( והלוואי והיה יותר )`,
-      `אני מאחל לך שרק תמשיכי להתפתח, לחוות ולגדול.
-אני מכיר אותך שנה ובשנה הזאת ראיתי אותך פורחת ומתגברת על הפחדים שלך, שוברת גבולות ואני הכי גאה בך בעולם!!
-את הרבה פעמים חושבת שאת פחות מאנשים אחרים ומורידה לעצמך וזה פאקינג לא נכון!! אז תפסיקי עם זה!! את עמית אוחיון, את הבן אדם הכי מושלם שקיים בעולם הזה ומי שאומר אחרת מנותק…`,
-      `אני יודע שעברת כל כך הרבה בחיים ואת פאקינג גיבורה מטורפת שאחרי כל זה את קמה בבוקר מחייכת ושמה זין על העולם ועדיין עם כל זה את פשוט הבן אדם הכי טוב שאני מכיר!
-אם זה לחייך לשומר בחניון או למוכר במכולת,
-לדאוג לכל החברים שלך, לשקר שבאלך לעשות דברים רק כי מישהו אחר רוצה לעשות את זה, או סתם להיות חמודה לאנשים רנדומליים.
-אני יכול להמשיך פה לנצח להגיד כמה טובה ומדהימה ואני מקווה ובטוח שלאט לאט תביני בעצמך כמה את מטורפת ומדהימה, כי אין טובים כמוך וממך!`,
-      `אני יודע שאני יכול לסמוך עלייך בהכל! את הבן אדם שיודע עלי הכי הרבה דברים, את השריטות הכי עמוקות שלי וגם את הדברים הכי טובים.
-את בין האנשים היחידים בעולם הזה שנותנים לי להרגיש שאני יכול להיות אני האמיתי, בלי שום מסכה ובלי שום פוזה. פשוט אני!`,
-      `אנחנו מכירים כבר שנה  וככל שעובר הזמן אני מבין שאנחנו תקועים אחד עם השנייה לתמיד!!
-וששום ריב או וויכוח לא יצליח להרוס את החברות שיש בנינו, כי הקשר שלנו הוא פשוט חברות אמת ולכל החיים!!`,
-      `אני בתקופה האחרונה עברתי הרבה שינויים בחיים שלי, וזאת הייתה תקופה מאוד מסובכת בשבילי שלא נשארתי עם הרבה אנשים בחיים שלי, ואת פשוט תמיד היית פה בשבילי כשהייתי צריך.
-
-ועכשיו קצת תודות כי מגיע לך!
-
-אז תודה עמיתי❤
-קודם כל תודה שסמכת עלי מלכתחילה כי זה לא מובן מאליו שתסמכי ככה על גבר,
-תודה שנפתחת בפני וסיפרת לי על עצמך,
-תודה על שהיית שם לעזור לי כשהייתי צריך, 
-תודה שהצחקת אותי כשהייתי עצוב, 
-תודה שידעת להיות כרצינית שצריך, 
-תודה שהיית לידי ברגעים הקשים,
-תודה שסבלת אותי כשהייתי בילתי נסבל ( יודע שאני יכול להיות כזה הרבה פעמים ),
-תודה על איך פגשתי את אמא ועוד מלא סדרות,
-תודה על טעם נהדר בשירים,
-תודה שקידמת אותי בכל כך הרבה דברים,
-ורשימת התודות לא תיגמר בחיים כנראה, אז פשוט תודה! תודה על מי ומה שאת ❤.
-אז עמית באמת פשוט תודה על מי ומה שאת בשבילי!!!! 
-ואל תשתני בחיים, כי את מושלמת כמו שאת!!!`,
-      `מזכיר לך שאני פה תמיד בשבילך לכל דבר ובכל זמן שאת צריכה!!!
-והדבר האחרון והכי חשוב לי, אני מאחל לשנינו לשמור על אותו קשר קרוב כזה ובחיים לא לריב, אבל באמת בחיים!
-
- אוהב אותך הכי בעולם עמיתי!!❤‍🔥😍😘`
-    ];
-
-    function setupBlessingBoard(){
-      const board = qs('#blessBoard');
-      const out = qs('#blessOut');
-      const bar = qs('#blessBar');
-      const pct = qs('#blessPct');
-      const total = blessingParts.length;
-      let opened = 0;
-      function updateProgress(){
-        opened = qsa('.shape.done', board).length;
-        const pr = Math.round((opened/total)*100);
-        bar.style.width = pr+'%';
-        pct.textContent = `${opened} / ${total}`;
-        if(opened===total){ heartConfetti(); }
-      }
-      updateProgress();
-
-      board.querySelectorAll('.shape').forEach(btn=>{
-        btn.addEventListener('click', async ()=>{
-          if(btn.classList.contains('done')) return;
-          const idx = +btn.dataset.index || 0;
-          const eff = btn.dataset.effect || 'reveal';
-          const card = document.createElement('div');
-          card.className = 'bless-card';
-          out.appendChild(card);
-
-          // אפקטים שונים
-          if(eff==='type'){
-            await typeText(card, blessingParts[idx]);
-          } else if(eff==='flip'){
-            card.textContent = blessingParts[idx];
-            if(window.gsap){ gsap.from(card,{rotationY:90,opacity:0,duration:.6}); }
-          } else if(eff==='sparkle'){
-            card.textContent = blessingParts[idx];
-            if(window.gsap){ gsap.from(card,{y:18,opacity:0,duration:.5}); }
-            heartConfetti();
-          } else if(eff==='stamp'){
-            card.textContent = blessingParts[idx]+"
-
-";
-            const st = document.createElement('span'); st.className='stamp'; st.textContent='חברות אמת'; card.appendChild(st);
-            if(window.gsap){ gsap.from(card,{scale:.92,opacity:0,duration:.4}); }
-          } else if(eff==='cascade'){
-            // פיצול לשורות קל
-            const lines = blessingParts[idx].split('
-');
-            for(const l of lines){
-              const p = document.createElement('div'); p.textContent = l; p.style.opacity=0; card.appendChild(p);
-            }
-            if(window.gsap){ gsap.to(card.children,{opacity:1,y:0,stagger:.08,duration:.25}); } else {
-              [...card.children].forEach(el=> el.style.opacity=1);
-            }
-          } else {
-            card.textContent = blessingParts[idx];
-            if(window.gsap){ gsap.from(card,{y:16,opacity:0,duration:.45}); }
-          }
-
-          btn.classList.add('done');
-          if(window.gsap){ gsap.fromTo(btn,{scale:1},{scale:.96,duration:.12}); }
-          updateProgress();
-          card.scrollIntoView({behavior:'smooth', block:'center'});
+        // נגישות בסיסית: הקשה Enter
+        btn.addEventListener('keydown', (e)=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); btn.click(); }
         });
       });
     }
@@ -650,3 +528,4 @@
   </script>
 </body>
 </html>
+
