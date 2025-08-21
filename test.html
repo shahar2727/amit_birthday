@@ -183,9 +183,9 @@
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה מהאירוע/המקום</p>
         <div class="timeline" id="timeline">
-          <button class="chip" data-photo="amit_birthday/assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
+          <button class="chip" data-photo="eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
           <button class="chip" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — הכי מלוח והכי שלנו">🧂 ים המלח</button>
-          <button class="chip" data-photo="/amit_birthday/assets/places/omer-adam.jpg" data-cap="הופעה של עומר אדם">🎤 הופעת עומר אדם</button>
+          <button class="chip" data-photo="omer-adam.jpg" data-cap="הופעה של עומר אדם">🎤 הופעת עומר אדם</button>
           <button class="chip" data-photo="assets/places/taqueria-tlv.jpg" data-cap="המסעדה שלנו: טאקריה תל־אביב">🌮 טאקריה תל־אביב</button>
           <button class="chip" data-photo="assets/places/beach.jpg" data-cap="הים — המקום הכי שלנו">🏖️ הים</button>
           <button class="chip" data-photo="assets/places/monika-seks.jpg" data-cap="הופעת מוניקה סקס (בקרוב)">🎸 הופעת מוניקה סקס</button>
@@ -297,7 +297,7 @@
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע" style="display:none">
       <button class="lb-close" id="lbClose" aria-label="סגירה">✕</button>
       <div class="lb-content">
-        <img id="lbImg" alt="תמונה" />
+        <img id="lbImg" alt="תמונה" loading="lazy" decoding="async" />
         <div id="lbCap" class="lb-cap"></div>
       </div>
     </div>
@@ -500,7 +500,22 @@
 
     function openLightbox(src, cap){
       if(!src) return;
-      $lbImg.src = src; $lbCap.textContent = cap || '';
+      $lbCap.textContent = cap || '';
+      // נסה נתיב כפי שהוא; אם נכשל, נסה מסלולים חלופיים (שורש/תיקייה)
+      const candidates = [src];
+      const baseName = src.split('/').pop();
+      if(!src.startsWith('assets/places/')) candidates.push('assets/places/'+baseName);
+      if(src.startsWith('assets/places/')) candidates.push(baseName);
+      let i = 0;
+      $lbImg.onerror = ()=>{
+        if(i < candidates.length){
+          $lbImg.src = candidates[i++];
+        } else {
+          $lbCap.textContent = 'לא נמצאה תמונה בנתיב: '+src;
+        }
+      };
+      i = 1; // כבר נטען הראשון ידנית למטה
+      $lbImg.src = candidates[0];
       $lightbox.classList.add('show');
     }
     function closeLightbox(){
@@ -528,4 +543,3 @@
   </script>
 </body>
 </html>
-
