@@ -122,6 +122,20 @@
     .lb-cap{padding:10px 14px;font-weight:700;color:#444;text-align:center}
     .lb-close{position:fixed;top:16px;left:16px;background:var(--pink);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
 
+
+    /* === וידאו ברכה === */
+    .video-card video{width:100%;max-height:70vh;border-radius:12px;background:#000}
+
+    /* === לוח גירוד === */
+    .scratch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media(max-width:780px){.scratch-grid{grid-template-columns:repeat(3,1fr)}}
+    .scratch-card{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:130px}
+    .scratch-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:10px}
+    .scratch-content .title{font-weight:900}
+    .scratch-content .sub{font-weight:700;color:#666;margin-top:6px}
+    .scratch-canvas{position:absolute;inset:0;touch-action:none}
+    .scratch-card.revealed .scratch-canvas{display:none}
+
   </style>
 </head>
 <body>
@@ -166,6 +180,15 @@
       </div>
     </header>
 
+    <!-- וידאו ברכה (לפני השיר) -->
+    <section class="sec">
+      <div class="card video-card">
+        <h3 class="h">🎥 סרטון ברכה</h3>
+        <video id="greetVideo" controls playsinline webkit-playsinline preload="metadata" src="assets/greeting.mp4"></video>
+        <p class="hint">לחצי פליי כדי לצפות (אנכי, מתאים לאייפון).</p>
+      </div>
+    </section>
+
     <!-- מוזיקה -->
     <section class="sec">
       <div class="card audio-card">
@@ -202,6 +225,18 @@
           <button class="chip" data-photo="assets/places/stanley.jpg" data-cap="מי היה מאמין שאפול גם לזה?">סטנלי קאפ </button>
           <button class="chip" data-photo="assets/places/monika-seks.jpg" data-cap="הופעת מוניקה סקס (בקרוב)">🎸 הופעת מוניקה סקס</button>
           <button class="chip" data-photo="assets/places/osher-cohen.jpg" data-cap="הופעת אושר כהן (בקרוב)">🎶 הופעת אושר כהן</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- לוח גירוד המתנות -->
+    <section class="sec">
+      <div class="card">
+        <h3 class="h">🪄 לוח גירוד המתנות</h3>
+        <p class="hint">גרדי את המשבצות כדי לחשוף הפתעות. אפשר לגרד את כולן! 🩷</p>
+        <div id="scratchGrid" class="scratch-grid" aria-live="polite"></div>
+        <div class="actions" style="margin-top:12px">
+          <button class="btn ghost" id="resetScratch">איפוס הלוח</button>
         </div>
       </div>
     </section>
@@ -306,7 +341,7 @@
     <div id="hearts" class="hearts" aria-hidden="true"></div>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע">
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע" style="display:none">
       <button class="lb-close" id="lbClose" aria-label="סגירה">✕</button>
       <div class="lb-content">
         <img id="lbImg" alt="תמונה" loading="lazy" decoding="async" />
@@ -425,6 +460,7 @@
       }
       // חיבור טיימליין ללייטבוקס
       setupTimelineLightbox();
+      setupScratch();
     }
 
     // כפתורי פתיחה ושיר
@@ -513,20 +549,16 @@
     function openLightbox(src, cap){
       if(!src) return;
       $lbCap.textContent = cap || '';
-      // נסה נתיב כפי שהוא; אם נכשל, נסה מסלולים חלופיים (שורש/תיקייה)
       const candidates = [src];
       const baseName = src.split('/').pop();
       if(!src.startsWith('assets/places/')) candidates.push('assets/places/'+baseName);
       if(src.startsWith('assets/places/')) candidates.push(baseName);
       let i = 0;
       $lbImg.onerror = ()=>{
-        if(i < candidates.length){
-          $lbImg.src = candidates[i++];
-        } else {
-          $lbCap.textContent = 'לא נמצאה תמונה בנתיב: '+src;
-        }
+        if(i < candidates.length){ $lbImg.src = candidates[i++]; }
+        else { $lbCap.textContent = 'לא נמצאה תמונה בנתיב: '+src; }
       };
-      i = 1; // כבר נטען הראשון ידנית למטה
+      i = 1;
       $lbImg.src = candidates[0];
       $lightbox.classList.add('show');
     }
@@ -545,10 +577,129 @@
           const cap = btn.dataset.cap || btn.textContent.trim();
           openLightbox(src, cap);
         });
-        // נגישות בסיסית: הקשה Enter
         btn.addEventListener('keydown', (e)=>{
           if(e.key==='Enter' || e.key===' '){ e.preventDefault(); btn.click(); }
         });
+      });
+    }
+
+    // ===================
+    //   לוח גירוד — 3x3 עם שמירה
+    // ===================
+    const SCRATCH_MAP_KEY = 'scratch_map_v1';
+    const SCRATCH_OPEN_KEY = 'scratch_open_v1';
+    const PRIZES = [
+      {id:'p1', title:'☘️ 5 גרם סליפרי', sub:'רגעים ירוקים ומחויכים'},
+      {id:'p2', title:'🍭 חבילה ענקית של הסוכריות שלך', sub:''},
+      {id:'p3', title:'🎫 הופעה של אושר כהן', sub:'שרים עד צרידות'},
+      {id:'p4', title:'🎸 הופעה של מוניקה סקס', sub:'רוקנ’רול בלב'},
+      {id:'p5', title:'🎤 עומר אדם😎 — פסטיבל התמר', sub:'לחלום בקול'},
+      {id:'p6', title:'🎤 איפה הילד — פסטיבל התמר', sub:'נוסטלגיה בזריחה'},
+      {id:'p7', title:'🎶 מוש בן ארי & Co — פסטיבל התמר', sub:'טוב על הנשמה'},
+      {id:'p8', title:'🌐 אתר יום הולדת לתמיד', sub:'המזכרת שלך ברשת'},
+      {id:'p9', title:'🍜 חבילת ראמנים', sub:'יאמי יאמי'},
+    ];
+
+    function shuffle(arr){
+      const a = arr.slice();
+      for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+      return a;
+    }
+
+    function loadMap(){
+      try{ const m = JSON.parse(localStorage.getItem(SCRATCH_MAP_KEY)); if(Array.isArray(m) && m.length===9) return m; }catch{}
+      const map = shuffle(PRIZES.map(p=>p.id));
+      localStorage.setItem(SCRATCH_MAP_KEY, JSON.stringify(map));
+      return map;
+    }
+    function loadOpen(){
+      try{ const s = JSON.parse(localStorage.getItem(SCRATCH_OPEN_KEY)); return s && typeof s==='object' ? s : {}; }catch{ return {}; }
+    }
+    function saveOpen(obj){ localStorage.setItem(SCRATCH_OPEN_KEY, JSON.stringify(obj)); }
+
+    function setupScratch(){
+      const grid = qs('#scratchGrid');
+      if(!grid) return;
+      grid.innerHTML = '';
+      const map = loadMap();
+      const opened = loadOpen();
+      const byId = Object.fromEntries(PRIZES.map(p=>[p.id,p]));
+
+      for(let i=0;i<9;i++){
+        const pid = map[i];
+        const pr = byId[pid];
+        const card = document.createElement('div');
+        card.className = 'scratch-card';
+        card.dataset.index = String(i);
+        const content = document.createElement('div'); content.className='scratch-content';
+        content.innerHTML = `<div class="title">${pr.title}</div>${pr.sub?`<div class="sub">${pr.sub}</div>`:''}`;
+        const canvas = document.createElement('canvas'); canvas.className='scratch-canvas';
+        card.appendChild(content); card.appendChild(canvas); grid.appendChild(card);
+
+        const ctx = canvas.getContext('2d');
+        let w=0,h=0,scale=1; let drawing=false; let strokes=0; const THRESH=0.6; const BR=18;
+        function resize(){
+          const r = card.getBoundingClientRect();
+          scale = window.devicePixelRatio || 1;
+          w = Math.max(180, Math.floor(r.width));
+          h = Math.max(120, Math.floor(r.height));
+          canvas.width = Math.floor(w*scale);
+          canvas.height = Math.floor(h*scale);
+          canvas.style.width = w+'px'; canvas.style.height = h+'px';
+          ctx.scale(scale, scale);
+          paintCover();
+        }
+        function paintCover(){
+          ctx.clearRect(0,0,w,h);
+          ctx.fillStyle = '#ffd5e5';
+          ctx.fillRect(0,0,w,h);
+          ctx.strokeStyle = '#ffc1d6'; ctx.lineWidth = 2; ctx.strokeRect(1,1,w-2,h-2);
+          ctx.fillStyle = '#ff6fa3'; ctx.font = '700 16px Heebo, sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText('גרדי אותי ✨', w/2, h/2);
+          ctx.globalCompositeOperation = 'destination-out';
+        }
+        function scratch(x,y){
+          ctx.beginPath(); ctx.arc(x,y,BR,0,Math.PI*2); ctx.fill(); strokes++;
+          if(strokes % 8 === 0) check();
+        }
+        function check(){
+          try{
+            const data = ctx.getImageData(0,0,Math.floor(w*scale),Math.floor(h*scale)).data;
+            let transparent = 0; for(let i=3;i<data.length;i+=4){ if(data[i]===0) transparent++; }
+            const ratio = transparent / (w*h*scale*scale);
+            if(ratio>THRESH) reveal();
+          }catch{/* ב部分 דפדפנים חסומים — נתעלם */}
+        }
+        function reveal(){
+          card.classList.add('revealed');
+          canvas.style.display = 'none';
+          opened[i] = true; saveOpen(opened);
+          heartConfetti();
+        }
+
+        // אם כבר נפתח קודם
+        if(opened[i]){ card.classList.add('revealed'); canvas.style.display='none'; }
+
+        // אירועי גרירה/מגע
+        const pos = (e)=>{
+          const rect = canvas.getBoundingClientRect();
+          const x = (e.touches? e.touches[0].clientX : e.clientX) - rect.left;
+          const y = (e.touches? e.touches[0].clientY : e.clientY) - rect.top;
+          return {x,y};
+        };
+        canvas.addEventListener('pointerdown', e=>{ drawing=true; canvas.setPointerCapture(e.pointerId); const p=pos(e); scratch(p.x,p.y); });
+        canvas.addEventListener('pointermove', e=>{ if(!drawing) return; const p=pos(e); scratch(p.x,p.y); });
+        ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=>{ drawing=false; }));
+
+        // התחלת ציור
+        resize();
+        window.addEventListener('resize', resize);
+      }
+
+      qs('#resetScratch').addEventListener('click', ()=>{
+        localStorage.removeItem(SCRATCH_MAP_KEY);
+        localStorage.removeItem(SCRATCH_OPEN_KEY);
+        setupScratch();
       });
     }
 
