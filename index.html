@@ -4,17 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>עמיתוווו 🎉 | 22</title>
-  <meta name="description" content="הפתעת יום הולדת לעמית — דף חמוד עם אנימציות, גלריה, טיימליין ומחולל מחמאות" />
+  <meta name="description" content="הפתעת יום הולדת לעמית — דף חמוד עם אנימציות, טיימליין, מחולל מחמאות ולוח גירוד מתנות" />
   <meta property="og:title" content="עמיתוווו 🎉 | 22" />
-  <meta property="og:description" content="הפתעת יום הולדת לעמית — דף חמוד עם אנימציות, גלריה, טיימליין ומחולל מחמאות" />
+  <meta property="og:description" content="הפתעת יום הולדת לעמית — דף חמוד עם אנימציות, טיימליין, מחולל מחמאות ולוח גירוד מתנות" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%23ffd9e6'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='72' fill='%23ff4d88'%3Eעמיתוווו 22%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <!-- ספריות (אופציונליות) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
+
   <style>
     :root{
       --pink:#ff6fa3;       /* ורוד דינאמי */
@@ -30,6 +32,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     a{color:var(--rose)}
+    img{max-width:100%;}
 
     /* כפתורים כלליים */
     .btn{background:var(--pink);color:#fff;border:0;border-radius:14px;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease, filter .2s ease}
@@ -58,7 +61,7 @@
     /* עיטור רקע עדין */
     .decor{position:fixed;inset:0;pointer-events:none;opacity:.25;z-index:0}
     .blob{position:absolute;filter:blur(50px);opacity:.4}
-    .b1{width:340px;height:340px;background:var(--pink-3);top:-60px;right: -40px;border-radius:50%}
+    .b1{width:340px;height:340px;background:var(--pink-3);top:-60px;right:-40px;border-radius:50%}
     .b2{width:280px;height:280px;background:#ffe5ee;bottom:-40px;left:-60px;border-radius:50%}
 
     /* מעטפת תוכן */
@@ -69,7 +72,7 @@
     .meta{margin-top:10px;color:var(--muted)}
     .actions{display:flex;gap:10px;margin-top:18px;justify-content:center}
 
-    /* מקטעי טקסט/ברכה */
+    /* מקטעים */
     section{padding:36px 18px}
     .sec{max-width:880px;margin:0 auto}
     .card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px}
@@ -79,42 +82,18 @@
     .h{margin:0 0 12px;color:var(--pink);font-size:22px}
     .p{white-space:pre-line;line-height:1.8;font-size:18px}
 
-    /* טיימליין פשוט */
+    /* טיימליין */
     .timeline{display:flex;gap:12px;overflow:auto;padding:6px 2px}
-    .chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--pink-3);color:#333;padding:10px 14px;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
-
-    /* גלריה */
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    @media(max-width:780px){.gallery{grid-template-columns:repeat(2,1fr)}}
-    .polaroid{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:8px 8px 24px;transform-style:preserve-3d}
-    .polaroid img{width:100%;height:160px;object-fit:cover;border-radius:12px;background:#ffeaf2;border:2px dashed var(--pink-3)}
-    .polaroid .cap{position:absolute;bottom:6px;left:0;right:0;text-align:center;color:#444;font-weight:700;font-size:13px}
+    .chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--pink-3);color:#333;padding:10px 14px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
 
     /* מחולל מחמאות */
     .compliment{font-size:20px;font-weight:800;color:#333;min-height:28px}
 
-    /* אודיו */
+    /* אודיו/וידאו */
     .audio-card audio{width:100%}
+    .video-card video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
 
-    /* כפתור חשיפה */
-    .reveal-btn{font-size:18px}
-
-    /* קונפטי לבבות (CSS) */
-    .hearts{position:fixed;inset:0;pointer-events:none;z-index:7777}
-    .heart{position:absolute;font-size:18px;animation:floatUp 2.4s ease-in forwards}
-    @keyframes floatUp{from{transform:translateY(0) scale(.9);opacity:.95} to{transform:translateY(-120vh) scale(1.3);opacity:0}}
-
-    /* חותמת */
-    .stamp{display:inline-block;transform:rotate(-3deg);border:3px solid var(--rose);padding:6px 10px;border-radius:10px;color:var(--rose);font-weight:900}
-
-    /* מוסריות נגישות */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-    /* העלמת סגול על כל מצב */
-    /* אין שימוש בגוונים סגולים. */
-
-    /* Lightbox לתמונות מהטיימליין */
-    .timeline .chip{cursor:pointer}
+    /* לייטבוקס תמונות */
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:9000}
     .lightbox.show{display:flex}
     .lb-content{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:min(920px,96vw);width:100%;overflow:hidden}
@@ -122,27 +101,35 @@
     .lb-cap{padding:10px 14px;font-weight:700;color:#444;text-align:center}
     .lb-close{position:fixed;top:16px;left:16px;background:var(--pink);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
 
+    /* קונפטי לבבות */
+    .hearts{position:fixed;inset:0;pointer-events:none;z-index:7777}
+    .heart{position:absolute;font-size:18px;animation:floatUp 2.4s ease-in forwards}
+    @keyframes floatUp{from{transform:translateY(0) scale(.9);opacity:.95} to{transform:translateY(-120vh) scale(1.3);opacity:0}}
 
-    /* === וידאו ברכה === */
-    .video-card video{width:100%;max-height:70vh;border-radius:12px;background:#000}
+    /* לוח גירוד — מובייל תחילה */
+    .scratch-grid{
+      display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px;
+      user-select:none; -webkit-user-select:none;
+    }
+    .scratch-card{
+      position:relative; background:#fff; border-radius:16px; box-shadow:var(--shadow);
+      overflow:hidden; min-height:110px;
+    }
+    @media(min-width:880px){ .scratch-card{ min-height:150px; } }
+    .scratch-content{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:10px }
+    .scratch-content .title{ font-weight:900; font-size:16px; color:var(--rose) }
+    .scratch-content .sub{ font-weight:700; font-size:13px; color:#666; margin-top:6px }
+    .scratch-canvas{ position:absolute; inset:0; touch-action:none; background:transparent }
+    .scratch-card.revealed .scratch-canvas{ display:none }
 
-    /* === לוח גירוד === */
-    .scratch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media(max-width:780px){.scratch-grid{grid-template-columns:repeat(3,1fr)}}
-    .scratch-card{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:130px}
-    .scratch-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:10px}
-    .scratch-content .title{font-weight:900}
-    .scratch-content .sub{font-weight:700;color:#666;margin-top:6px}
-    .scratch-canvas{position:absolute;inset:0;touch-action:none}
-    .scratch-card.revealed .scratch-canvas{display:none}
-
+    /* נגישות */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <!-- עיטורים עדינים -->
+  <!-- עיטורים -->
   <div class="decor" aria-hidden="true">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
+    <div class="blob b1"></div><div class="blob b2"></div>
   </div>
 
   <!-- שער סיסמה -->
@@ -152,14 +139,14 @@
       <p>הכניסי סיסמה כדי להיכנס 💗</p>
       <div class="row">
         <input id="pw" class="input" type="password" placeholder="סיסמה" autocomplete="current-password" aria-label="סיסמה" />
-        <button class="btn" id="enterBtn">כניסה</button>
+        <button class="btn" id="enterBtn" type="button">כניסה</button>
       </div>
       <div id="err" class="error">סיסמה שגויה. נסי שוב 🙂</div>
       <p class="hint" id="previewHint" style="display:none">מצב תצוגה מוקדמת פעיל.</p>
     </div>
   </div>
 
-  <!-- ספירה לאחור (חסום עד יום ההולדת) -->
+  <!-- ספירה לאחור -->
   <div id="countdown" class="countdown">
     <div>
       <h2>🎂 זה כמעט כאן! ההפתעה נפתחת ב־20/10/2025</h2>
@@ -175,12 +162,12 @@
       <p class="subtitle">חוגגת 22 · 20/10/2003</p>
       <p class="meta">מוכנה להפתעה? לחצי👇</p>
       <div class="actions">
-        <button class="btn reveal-btn" id="reveal">פתחי את ההפתעה 🎁</button>
-        <button class="btn ghost" id="playSong">נגן את השיר 🎵</button>
+        <button class="btn reveal-btn" id="reveal" type="button">פתחי את ההפתעה 🎁</button>
+        <button class="btn ghost" id="playSong" type="button">נגן את השיר 🎵</button>
       </div>
     </header>
 
-    <!-- וידאו ברכה (לפני השיר) -->
+    <!-- סרטון ברכה (לפני השיר) -->
     <section class="sec">
       <div class="card video-card">
         <h3 class="h">🎥 סרטון ברכה</h3>
@@ -193,55 +180,39 @@
     <section class="sec">
       <div class="card audio-card">
         <h3 class="h">🎶 השיר שלנו: Pop Danthology 2012</h3>
-        <audio id="song" preload="none" controls src="assets/pop-danthology-2012.mp3">
-          הדפדפן שלך אינו תומך בנגן אודיו.
-        </audio>
+        <audio id="song" preload="none" controls src="assets/pop-danthology-2012.mp3">הדפדפן שלך אינו תומך בנגן אודיו.</audio>
         <p class="hint">ב־iPhone צריך לגעת בכפתור ניגון כדי להתחיל.</p>
       </div>
     </section>
 
-    <!-- טיימליין/מקומות משמעותיים (לחיצים + תמונה) -->
+    <!-- טיימליין/מקומות (לחיץ + תמונה) -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה מהאירוע/המקום</p>
         <div class="timeline" id="timeline">
-          <button class="chip" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
-          <button class="chip" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
-          <button class="chip" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
-          <button class="chip" data-photo="assets/places/video.jpg" data-cap=" את הכי מתוקה!">שיחות וידאו</button>
-          <button class="chip" data-photo="assets/places/65.jpg" data-cap=" שש-בש כי זה חלק מהאופי שלנו">שש-בש</button>
-          <button class="chip" data-photo="assets/places/beach.jpg" data-cap="הים — המקום שלימדת אותי לאהוב מחדש">🏖️ הים</button>
-          <button class="chip" data-photo="assets/places/beach_65.jpg" data-cap="שילוב מנצח">🏖️ שש-בש וים</button>
-          <button class="chip" data-photo="assets/places/happy.jpg" data-cap=" שמחתי להיות איתך ברגע השמח הזה!">רגעים שמחים: היום שהפכת לנהגת</button>
-          <button class="chip" data-photo="assets/places/sad.jpg" data-cap="שמחתי להיות לצידך גם ברגעים קשים">ורגעים פחות שמחים...</button>
-          <button class="chip" data-photo="assets/places/omer-adam.jpg" data-cap="Omer Adam😎">🎤 הופעה של עומר אדם</button>
-          <button class="chip" data-photo="assets/places/shoval.jpg" data-cap="שובלי ונהוראי🎉">🎤 הערס והפרחה</button>
-          <button class="chip" data-photo="assets/places/taqueria-tlv.jpg" data-cap="המסעדה שלנו: טאקריה 🌯">🌮 טאקריה תל־אביב</button>
-          <button class="chip" data-photo="assets/places/hiro.jpg" data-cap="כנאפה עם הירו סאן🎌">כנאפה סאן🎌</button>
-          <button class="chip" data-photo="assets/places/food.jpg" data-cap=" לרגע לא הפסקנו לאכול!">עוד אוכל...</button>
-          <button class="chip" data-photo="assets/places/hafgana.jpg" data-cap=" אפילו להפגנות הצלחת לקחת אותי!">מפגינים ונהנים...</button>
-          <button class="chip" data-photo="assets/places/shoping.jpg" data-cap="שופינג כי אנחנו אוהבים לבזבז כסף">קונים ונהנים🛒</button>
-          <button class="chip" data-photo="assets/places/stanley.jpg" data-cap="מי היה מאמין שאפול גם לזה?">סטנלי קאפ </button>
-          <button class="chip" data-photo="assets/places/monika-seks.jpg" data-cap="הופעת מוניקה סקס (בקרוב)">🎸 הופעת מוניקה סקס</button>
-          <button class="chip" data-photo="assets/places/osher-cohen.jpg" data-cap="הופעת אושר כהן (בקרוב)">🎶 הופעת אושר כהן</button>
+          <!-- הוסף/שנה נתיבים לפי הקבצים שיש לך -->
+          <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
+          <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
+          <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
+          <button class="chip" type="button" data-photo="assets/places/video.jpg" data-cap="את הכי מתוקה!">שיחות וידאו</button>
+          <button class="chip" type="button" data-photo="assets/places/65.jpg" data-cap="שש-בש כי זה חלק מהאופי שלנו">שש-בש</button>
+          <button class="chip" type="button" data-photo="assets/places/beach.jpg" data-cap="הים — המקום שלימדת אותי לאהוב מחדש">🏖️ הים</button>
+          <button class="chip" type="button" data-photo="assets/places/beach_65.jpg" data-cap="שילוב מנצח">🏖️ שש-בש וים</button>
+          <button class="chip" type="button" data-photo="assets/places/happy.jpg" data-cap="שמחתי להיות איתך ברגע השמח הזה!">רגעים שמחים: היום שהפכת לנהגת</button>
+          <button class="chip" type="button" data-photo="assets/places/sad.jpg" data-cap="שמחתי להיות לצידך גם ברגעים קשים">ורגעים פחות שמחים...</button>
+          <button class="chip" type="button" data-photo="assets/places/omer-adam.jpg" data-cap="Omer Adam😎">🎤 הופעה של עומר אדם</button>
+          <button class="chip" type="button" data-photo="assets/places/taqueria-tlv.jpg" data-cap="המסעדה שלנו: טאקריה 🌯">🌮 טאקריה תל־אביב</button>
+          <button class="chip" type="button" data-photo="assets/places/hiro.jpg" data-cap="כנאפה עם הירו סאן🎌">כנאפה סאן🎌</button>
+          <button class="chip" type="button" data-photo="assets/places/food.jpg" data-cap="לרגע לא הפסקנו לאכול!">עוד אוכל...</button>
+          <button class="chip" type="button" data-photo="assets/places/hafgana.jpg" data-cap="אפילו להפגנות הצלחת לקחת אותי!">מפגינים ונהנים...</button>
+          <button class="chip" type="button" data-photo="assets/places/shoping.jpg" data-cap="שופינג כי אנחנו אוהבים לבזבז כסף">קונים ונהנים🛒</button>
+          <button class="chip" type="button" data-photo="assets/places/stanley.jpg" data-cap="מי היה מאמין שאפול גם לזה?">סטנלי קאפ</button>
+          <button class="chip" type="button" data-photo="assets/places/monika-seks.jpg" data-cap="הופעת מוניקה סקס (בקרוב)">🎸 הופעת מוניקה סקס</button>
+          <button class="chip" type="button" data-photo="assets/places/osher-cohen.jpg" data-cap="הופעת אושר כהן (בקרוב)">🎶 הופעת אושר כהן</button>
         </div>
       </div>
     </section>
-
-    <!-- לוח גירוד המתנות -->
-    <section class="sec">
-      <div class="card">
-        <h3 class="h">🪄 לוח גירוד המתנות</h3>
-        <p class="hint">גרדי את המשבצות כדי לחשוף הפתעות. אפשר לגרד את כולן! 🩷</p>
-        <div id="scratchGrid" class="scratch-grid" aria-live="polite"></div>
-        <div class="actions" style="margin-top:12px">
-          <button class="btn ghost" id="resetScratch">איפוס הלוח</button>
-        </div>
-      </div>
-    </section>
-
-    
 
     <!-- מחולל מחמאות -->
     <section class="sec">
@@ -249,60 +220,41 @@
         <h3 class="h">💬 מחולל מחמאות לעמית</h3>
         <div class="compliment" id="compliment">לחצי על הכפתור…</div>
         <div class="actions" style="margin-top:12px">
-          <button class="btn" id="nextCompliment">תני לי מחמאה 🎁</button>
+          <button class="btn" id="nextCompliment" type="button">תני לי מחמאה 🎁</button>
         </div>
       </div>
     </section>
 
-    <!-- הברכה — מקטעים עם אפקטים שונים -->
+    <!-- הברכה — מקטעים עם אפקטים -->
     <section class="sec">
       <div class="grid cols-2">
-        <div class="card" data-effect="type">
-          <div class="p">עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
-קודם כל מלא מלא מזל טובבבבב!!❤❤</div>
-        </div>
-        <div class="card" data-effect="cascade">
-          <div class="p">אז עמיתי,
+        <div class="card" data-effect="type"><div class="p">עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
+קודם כל מלא מלא מזל טובבבבב!!❤❤</div></div>
+        <div class="card" data-effect="cascade"><div class="p">אז עמיתי,
 אני רוצה לאחל לך באמת את כל הטוב שהעולם יכול להציע לך.
 את האישה הכי מיוחדת, מדהימה, אוהבת, אכפתית, מתחשבת, מצחיקה, יפה, חזקה, חכמה ומכילה שקיימת בעולם הזה!
 אה וכמעט שכחתי, את הכי כשרונית בעולם!!!
 לא ברור איך בן אדם עם כל כך הרבה תכונות באופי שלו יכול לחשוב שאין לו אופי🤷‍♂🤦‍♂
-את פשוט הכי טובה עמית!!!!!</div>
-        </div>
-        <div class="card" data-effect="flip">
-          <div class="p">את חברה מדהימה, יודעת להקשיב כשצריך, יודעת להצחיק כשצריך, יודעת לתת בראש ולנער כשצריך ותמיד אבל תמיד פה בשבילי לכל דבר!
+את פשוט הכי טובה עמית!!!!!</div></div>
+        <div class="card" data-effect="flip"><div class="p">את חברה מדהימה, יודעת להקשיב כשצריך, יודעת להצחיק כשצריך, יודעת לתת בראש ולנער כשצריך ותמיד אבל תמיד פה בשבילי לכל דבר!
 את הבן אדם שאני פורק לו כשרע לי, הבן אדם שאני רץ לספר לו כשקורה לי משהו טוב, את באמת כמו הפסיכולוגית האישית שלי!!
-כל אחד צריך עמיתי בחיים שלו שתסדר לו את המוח.</div>
-        </div>
-        <div class="card" data-effect="timeline">
-          <div class="p">אומנם אנחנו מכירים רק שנה אבל זאת בהחלט הייתה שנה מלאה בחוויות מטורפות בקשר שלנו.
-אני מודה עלייך כל יום שנכנסת לחיים שלי ולימדת אותי מחדש את הערך של המילה ״חברות״.</div>
-        </div>
-        <div class="card" data-effect="reveal">
-          <div class="p">את גרמת לי להיפתח מחדש ולהכניס אותך לחיים שלי,  אחרי תקופה ארוכה שלא הצלחתי לייצר קשרים חדשים, בגלל כמה אנשים שקראתי להם חברים שלי ובאמת שברו לי את הלב.
-הראת לי באמת איזה אנשים אני רוצה שיהיו סביבי ומה מגיע לי באמת, הראת לי שמגיע לי אנשים כמוך!!!( והלוואי והיה יותר )</div>
-        </div>
-        <div class="card" data-effect="highlight">
-          <div class="p">אני מאחל לך שרק תמשיכי להתפתח, לחוות ולגדול.
+כל אחד צריך עמיתי בחיים שלו שתסדר לו את המוח.</div></div>
+        <div class="card" data-effect="timeline"><div class="p">אומנם אנחנו מכירים רק שנה אבל זאת בהחלט הייתה שנה מלאה בחוויות מטורפות בקשר שלנו.
+אני מודה עלייך כל יום שנכנסת לחיים שלי ולימדת אותי מחדש את הערך של המילה ״חברות״.</div></div>
+        <div class="card" data-effect="reveal"><div class="p">את גרמת לי להיפתח מחדש ולהכניס אותך לחיים שלי,  אחרי תקופה ארוכה שלא הצלחתי לייצר קשרים חדשים, בגלל כמה אנשים שקראתי להם חברים שלי ובאמת שברו לי את הלב.
+הראת לי באמת איזה אנשים אני רוצה שיהיו סביבי ומה מגיע לי באמת, הראת לי שמגיע לי אנשים כמוך!!!( והלוואי והיה יותר )</div></div>
+        <div class="card" data-effect="highlight"><div class="p">אני מאחל לך שרק תמשיכי להתפתח, לחוות ולגדול.
 אני מכיר אותך שנה ובשנה הזאת ראיתי אותך פורחת ומתגברת על הפחדים שלך, שוברת גבולות ואני הכי גאה בך בעולם!!
-את הרבה פעמים חושבת שאת פחות מאנשים אחרים ומורידה לעצמך וזה פאקינג לא נכון!! אז תפסיקי עם זה!! את עמית אוחיון, את הבן אדם הכי מושלם שקיים בעולם הזה ומי שאומר אחרת מנותק…</div>
-        </div>
-        <div class="card" data-effect="sparkle">
-          <div class="p">אני יודע שעברת כל כך הרבה בחיים ואת פאקינג גיבורה מטורפת שאחרי כל זה את קמה בבוקר מחייכת ושמה זין על העולם ועדיין עם כל זה את פשוט הבן אדם הכי טוב שאני מכיר!
+את הרבה פעמים חושבת שאת פחות מאנשים אחרים ומורידה לעצמך וזה פאקינג לא נכון!! אז תפסיקי עם זה!! את עמית אוחיון, את הבן אדם הכי מושלם שקיים בעולם הזה ומי שאומר אחרת מנותק…</div></div>
+        <div class="card" data-effect="sparkle"><div class="p">אני יודע שעברת כל כך הרבה בחיים ואת פאקינג גיבורה מטורפת שאחרי כל זה את קמה בבוקר מחייכת ושמה זין על העולם ועדיין עם כל זה את פשוט הבן אדם הכי טוב שאני מכיר!
 אם זה לחייך לשומר בחניון או למוכר במכולת,
 לדאוג לכל החברים שלך, לשקר שבאלך לעשות דברים רק כי מישהו אחר רוצה לעשות את זה, או סתם להיות חמודה לאנשים רנדומליים.
-אני יכול להמשיך פה לנצח להגיד כמה טובה ומדהימה ואני מקווה ובטוח שלאט לאט תביני בעצמך כמה את מטורפת ומדהימה, כי אין טובים כמוך וממך!</div>
-        </div>
-        <div class="card" data-effect="mask">
-          <div class="p">אני יודע שאני יכול לסמוך עלייך בהכל! את הבן אדם שיודע עלי הכי הרבה דברים, את השריטות הכי עמוקות שלי וגם את הדברים הכי טובים.
-את בין האנשים היחידים בעולם הזה שנותנים לי להרגיש שאני יכול להיות אני האמיתי, בלי שום מסכה ובלי שום פוזה. פשוט אני!</div>
-        </div>
-        <div class="card" data-effect="stamp">
-          <div class="p">אנחנו מכירים כבר שנה  וככל שעובר הזמן אני מבין שאנחנו תקועים אחד עם השנייה לתמיד!!
-וששום ריב או וויכוח לא יצליח להרוס את החברות שיש בנינו, כי הקשר שלנו הוא פשוט חברות אמת ולכל החיים!!</div>
-        </div>
-        <div class="card" data-effect="checklist">
-          <div class="p">אני בתקופה האחרונה עברתי הרבה שינויים בחיים שלי, וזאת הייתה תקופה מאוד מסובכת בשבילי שלא נשארתי עם הרבה אנשים בחיים שלי, ואת פשוט תמיד היית פה בשבילי כשהייתי צריך.
+אני יכול להמשיך פה לנצח להגיד כמה טובה ומדהימה ואני מקווה ובטוח שלאט לאט תביני בעצמך כמה את מטורפת ומדהימה, כי אין טובים כמוך וממך!</div></div>
+        <div class="card" data-effect="mask"><div class="p">אני יודע שאני יכול לסמוך עלייך בהכל! את הבן אדם שיודע עלי הכי הרבה דברים, את השריטות הכי עמוקות שלי וגם את הדברים הכי טובים.
+את בין האנשים היחידים בעולם הזה שנותנים לי להרגיש שאני יכול להיות אני האמיתי, בלי שום מסכה ובלי שום פוזה. פשוט אני!</div></div>
+        <div class="card" data-effect="stamp"><div class="p">אנחנו מכירים כבר שנה  וככל שעובר הזמן אני מבין שאנחנו תקועים אחד עם השנייה לתמיד!!
+וששום ריב או וויכוח לא יצליח להרוס את החברות שיש בנינו, כי הקשר שלנו הוא פשוט חברות אמת ולכל החיים!!</div></div>
+        <div class="card" data-effect="checklist"><div class="p">אני בתקופה האחרונה עברתי הרבה שינויים בחיים שלי, וזאת הייתה תקופה מאוד מסובכת בשבילי שלא נשארתי עם הרבה אנשים בחיים שלי, ואת פשוט תמיד היית פה בשבילי כשהייתי צריך.
 
 ועכשיו קצת תודות כי מגיע לך!
 
@@ -319,18 +271,27 @@
 תודה שקידמת אותי בכל כך הרבה דברים,
 ורשימת התודות לא תיגמר בחיים כנראה, אז פשוט תודה! תודה על מי ומה שאת ❤.
 אז עמית באמת פשוט תודה על מי ומה שאת בשבילי!!!! 
-ואל תשתני בחיים, כי את מושלמת כמו שאת!!!</div>
-        </div>
-        <div class="card" data-effect="finale">
-          <div class="p">מזכיר לך שאני פה תמיד בשבילך לכל דבר ובכל זמן שאת צריכה!!!
+ואל תשתני בחיים, כי את מושלמת כמו שאת!!!</div></div>
+        <div class="card" data-effect="finale"><div class="p">מזכיר לך שאני פה תמיד בשבילך לכל דבר ובכל זמן שאת צריכה!!!
 והדבר האחרון והכי חשוב לי, אני מאחל לשנינו לשמור על אותו קשר קרוב כזה ובחיים לא לריב, אבל באמת בחיים!
 
- אוהב אותך הכי בעולם עמיתי!!❤‍🔥😍😘</div>
+ אוהב אותך הכי בעולם עמיתי!!❤‍🔥😍😘</div></div>
+      </div>
+    </section>
+
+    <!-- לוח גירוד המתנות -->
+    <section class="sec">
+      <div class="card">
+        <h3 class="h">🪄 לוח גירוד המתנות</h3>
+        <p class="hint">גרדי את המשבצות כדי לחשוף הפתעות. אפשר לגרד את כולן! 🩷</p>
+        <div id="scratchGrid" class="scratch-grid" aria-live="polite"></div>
+        <div class="actions" style="margin-top:12px">
+          <button class="btn ghost" id="resetScratch" type="button">איפוס הלוח</button>
         </div>
       </div>
     </section>
 
-    <!-- פוטר קטן -->
+    <!-- פוטר -->
     <section class="sec" style="padding-bottom:80px">
       <div class="card" style="text-align:center">
         <p class="hint">נבנה באהבה. צבעים: ורוד/לבן בלבד. אין סגול 🙅‍♀️</p>
@@ -341,8 +302,8 @@
     <div id="hearts" class="hearts" aria-hidden="true"></div>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע" style="display:none">
-      <button class="lb-close" id="lbClose" aria-label="סגירה">✕</button>
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע">
+      <button class="lb-close" id="lbClose" aria-label="סגירה" type="button">✕</button>
       <div class="lb-content">
         <img id="lbImg" alt="תמונה" loading="lazy" decoding="async" />
         <div id="lbCap" class="lb-cap"></div>
@@ -351,6 +312,7 @@
   </main>
 
   <script>
+  (()=> {
     // ===================
     //   Utilities
     // ===================
@@ -360,7 +322,7 @@
 
     // Password: SHA-256("amito22")
     const PASSWORD_HASH = "4a46b0304f5d192b82dfe73eeebbbe2c0ac569338a14c09e17643ad14709b3cd";
-    const BDAY_ISO = "2025-10-20T00:00:00+03:00"; // Asia/Jerusalem, לפני סיום שעון קיץ
+    const BDAY_ISO = "2025-10-20T00:00:00+03:00"; // Asia/Jerusalem
 
     const $gate = qs('#gate');
     const $err = qs('#err');
@@ -373,40 +335,44 @@
     const $hearts = qs('#hearts');
     const $previewHint = qs('#previewHint');
 
-    // Simple URL param check for preview (for creator only)
+    // preview=1 מתיר לאחר סיסמה לעקוף את הספירה
     const url = new URL(location.href);
     const isPreview = url.searchParams.get('preview') === '1';
-
     if(isPreview){ $previewHint.style.display = 'block'; }
 
-    // Hash helper
+    // Hash helper + fallback
     async function sha256Hex(str){
-      const enc = new TextEncoder();
-      const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
-      const arr = Array.from(new Uint8Array(buf));
-      return arr.map(b=>b.toString(16).padStart(2,'0')).join('');
+      try{
+        const enc = new TextEncoder();
+        const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+        const arr = Array.from(new Uint8Array(buf));
+        return arr.map(b=>b.toString(16).padStart(2,'0')).join('');
+      }catch(e){
+        return null;
+      }
+    }
+
+    async function checkPassword(pw){
+      const hex = await sha256Hex(pw);
+      if(hex) return hex === PASSWORD_HASH;
+      // פולבאק (למקרה נדיר ללא WebCrypto): פחות מאובטח, אך שימושי לתצוגה מקומית
+      return pw === 'amito22';
     }
 
     // Gate flow
     async function handleEnter(){
       const pw = qs('#pw').value || '';
-      const hex = await sha256Hex(pw);
-      if(hex !== PASSWORD_HASH){
-        $err.style.display = 'block';
-        return;
-      }
+      const ok = await checkPassword(pw);
+      if(!ok){ $err.style.display = 'block'; return; }
       $err.style.display = 'none';
 
-      // לאחר אימות סיסמה — בדיקת תאריך
       const now = new Date();
       const target = new Date(BDAY_ISO);
       if(now < target && !isPreview){
-        // ספירה לאחור בלבד עד התאריך
         $gate.style.display = 'none';
         $countdown.style.display = 'flex';
         startCountdown(target);
       } else {
-        // כניסה מלאה
         $gate.style.display = 'none';
         startApp();
       }
@@ -437,13 +403,11 @@
     // כניסת אפליקציה
     function startApp(){
       $app.style.display = 'block';
-      // Tilt (יישאר שקט אם אין אלמנטים)
       if(window.VanillaTilt){ VanillaTilt.init(document.querySelectorAll('[data-tilt]')); }
-      // אנימציות GSAP
       if(window.gsap){
         if(window.ScrollTrigger){ gsap.registerPlugin(ScrollTrigger); }
         gsap.from('#bigTitle',{y:20,opacity:0,duration:.8,ease:'power2.out'});
-        qsa('.card[data-effect]').forEach((el)=>{
+        qsa('.card[data-effect]').forEach(el=>{
           const eff = el.dataset.effect;
           let vars={opacity:0,y:24,duration:.7, ease:'power2.out'};
           if(eff==='flip') vars={opacity:0,rotationY:90,transformOrigin:'50% 50%', duration:.7};
@@ -458,24 +422,21 @@
           gsap.from(el, { ...vars, scrollTrigger:{trigger:el, start:'top 80%'} });
         });
       }
-      // חיבור טיימליין ללייטבוקס
       setupTimelineLightbox();
       setupScratch();
     }
 
     // כפתורי פתיחה ושיר
-    $reveal.addEventListener('click', async ()=>{
-      // לבבות קונפטי קצר
+    qs('#reveal').addEventListener('click', async ()=>{
       heartConfetti();
-      // גלילה קלה למקטע הבא
-      await sleep(100);
+      await sleep(120);
       window.scrollTo({top: window.innerHeight, behavior:'smooth'});
     });
     $playSong.addEventListener('click', ()=>{ $song.play().catch(()=>{}); });
 
     // מחולל מחמאות
     const compliments = [
-      "את הכי רזה", // לבקשתך — ניתן לשנות בהמשך
+      "את הכי רזה",
       "הכי יפה בעולם",
       "לב של זהב",
       "הכי מצחיקה בחדר",
@@ -505,15 +466,13 @@
       "אחת ויחידה — עמית אוחיון 💥"
     ];
     const $compliment = qs('#compliment');
-    const $nextCompliment = qs('#nextCompliment');
-    $nextCompliment.addEventListener('click', ()=>{
+    qs('#nextCompliment').addEventListener('click', ()=>{
       const pick = compliments[Math.floor(Math.random()*compliments.length)];
       $compliment.textContent = pick;
-      // פופ קטן
       if(window.gsap){ gsap.fromTo($compliment,{scale:.92,opacity:.7},{scale:1,opacity:1,duration:.2}); }
     });
 
-    // אנימציית לבבות קלה — CSS/JS
+    // לבבות
     function heartConfetti(){
       const EMOJIS = ['💗','💓','💖','💞','💕','💘'];
       for(let i=0;i<28;i++){
@@ -530,14 +489,6 @@
       }
     }
 
-    // בטיחות: מניעת גרירה/העתקה של תמונות כברירת מחדל בגלריה (ניתן להסיר)
-    qsa('.polaroid img').forEach(img=>{
-      img.addEventListener('dragstart', e=> e.preventDefault());
-      img.addEventListener('contextmenu', e=> e.preventDefault());
-    });
-
-    // Note: תצוגת קדם למפתח בלבד — הוספת ?preview=1 לכתובת מאפשרת לעבור את חסימת התאריך אחרי סיסמה
-
     // ===================
     //   Lightbox לתמונות טיימליין
     // ===================
@@ -549,10 +500,13 @@
     function openLightbox(src, cap){
       if(!src) return;
       $lbCap.textContent = cap || '';
+
+      // מסלולי נפילה חכמים
       const candidates = [src];
       const baseName = src.split('/').pop();
       if(!src.startsWith('assets/places/')) candidates.push('assets/places/'+baseName);
       if(src.startsWith('assets/places/')) candidates.push(baseName);
+
       let i = 0;
       $lbImg.onerror = ()=>{
         if(i < candidates.length){ $lbImg.src = candidates[i++]; }
@@ -560,10 +514,13 @@
       };
       i = 1;
       $lbImg.src = candidates[0];
+
       $lightbox.classList.add('show');
+      $lightbox.style.display = 'flex'; // מבטל מקרים נדירים של התעלמות מה-class
     }
     function closeLightbox(){
       $lightbox.classList.remove('show');
+      $lightbox.style.display = 'none';
       $lbImg.src = '';
     }
     $lbClose.addEventListener('click', closeLightbox);
@@ -572,6 +529,7 @@
 
     function setupTimelineLightbox(){
       qsa('#timeline .chip').forEach(btn=>{
+        if(!btn.type) btn.type = 'button';
         btn.addEventListener('click', ()=>{
           const src = btn.dataset.photo;
           const cap = btn.dataset.cap || btn.textContent.trim();
@@ -599,77 +557,86 @@
       {id:'p8', title:'🌐 אתר יום הולדת לתמיד', sub:'המזכרת שלך ברשת'},
       {id:'p9', title:'🍜 חבילת ראמנים', sub:'יאמי יאמי'},
     ];
-
-    function shuffle(arr){
-      const a = arr.slice();
-      for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
-      return a;
-    }
-
+    function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
     function loadMap(){
       try{ const m = JSON.parse(localStorage.getItem(SCRATCH_MAP_KEY)); if(Array.isArray(m) && m.length===9) return m; }catch{}
       const map = shuffle(PRIZES.map(p=>p.id));
       localStorage.setItem(SCRATCH_MAP_KEY, JSON.stringify(map));
       return map;
     }
-    function loadOpen(){
-      try{ const s = JSON.parse(localStorage.getItem(SCRATCH_OPEN_KEY)); return s && typeof s==='object' ? s : {}; }catch{ return {}; }
-    }
-    function saveOpen(obj){ localStorage.setItem(SCRATCH_OPEN_KEY, JSON.stringify(obj)); }
+    function loadOpen(){ try{ const s=JSON.parse(localStorage.getItem(SCRATCH_OPEN_KEY)); return s && typeof s==='object' ? s : {}; }catch{ return {}; } }
+    function saveOpen(o){ localStorage.setItem(SCRATCH_OPEN_KEY, JSON.stringify(o)); }
 
     function setupScratch(){
-      const grid = qs('#scratchGrid');
-      if(!grid) return;
+      const grid = qs('#scratchGrid'); if(!grid) return;
       grid.innerHTML = '';
       const map = loadMap();
       const opened = loadOpen();
       const byId = Object.fromEntries(PRIZES.map(p=>[p.id,p]));
 
       for(let i=0;i<9;i++){
-        const pid = map[i];
-        const pr = byId[pid];
+        const pid = map[i], pr = byId[pid];
+
         const card = document.createElement('div');
         card.className = 'scratch-card';
         card.dataset.index = String(i);
-        const content = document.createElement('div'); content.className='scratch-content';
+
+        const content = document.createElement('div');
+        content.className='scratch-content';
         content.innerHTML = `<div class="title">${pr.title}</div>${pr.sub?`<div class="sub">${pr.sub}</div>`:''}`;
-        const canvas = document.createElement('canvas'); canvas.className='scratch-canvas';
+
+        const canvas = document.createElement('canvas');
+        canvas.className='scratch-canvas';
+        const ctx = canvas.getContext('2d', { willReadFrequently:true });
+
         card.appendChild(content); card.appendChild(canvas); grid.appendChild(card);
 
-        const ctx = canvas.getContext('2d');
-        let w=0,h=0,scale=1; let drawing=false; let strokes=0; const THRESH=0.6; const BR=18;
-        function resize(){
-          const r = card.getBoundingClientRect();
-          scale = window.devicePixelRatio || 1;
-          w = Math.max(180, Math.floor(r.width));
-          h = Math.max(120, Math.floor(r.height));
-          canvas.width = Math.floor(w*scale);
-          canvas.height = Math.floor(h*scale);
-          canvas.style.width = w+'px'; canvas.style.height = h+'px';
-          ctx.scale(scale, scale);
-          paintCover();
-        }
+        let w=0,h=0,dpr=1; let drawing=false; let strokes=0;
+        const THRESH = 0.55;
+        const BR = matchMedia('(pointer:coarse)').matches ? 26 : 18;
+
         function paintCover(){
+          ctx.save();
+          ctx.globalCompositeOperation = 'source-over';
           ctx.clearRect(0,0,w,h);
-          ctx.fillStyle = '#ffd5e5';
-          ctx.fillRect(0,0,w,h);
+          ctx.fillStyle = '#ffd5e5'; ctx.fillRect(0,0,w,h);
           ctx.strokeStyle = '#ffc1d6'; ctx.lineWidth = 2; ctx.strokeRect(1,1,w-2,h-2);
-          ctx.fillStyle = '#ff6fa3'; ctx.font = '700 16px Heebo, sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillStyle = '#ff6fa3'; ctx.font = '700 16px Heebo, system-ui, sans-serif';
+          ctx.textAlign='center'; ctx.textBaseline='middle';
           ctx.fillText('גרדי אותי ✨', w/2, h/2);
+          ctx.restore();
           ctx.globalCompositeOperation = 'destination-out';
         }
-        function scratch(x,y){
-          ctx.beginPath(); ctx.arc(x,y,BR,0,Math.PI*2); ctx.fill(); strokes++;
-          if(strokes % 8 === 0) check();
+
+        function resize(){
+          const r = card.getBoundingClientRect();
+          dpr = Math.max(1, window.devicePixelRatio || 1);
+          w = Math.max(160, Math.floor(r.width));
+          h = Math.max(110, Math.floor(r.height));
+          canvas.width = Math.floor(w * dpr);
+          canvas.height = Math.floor(h * dpr);
+          canvas.style.width = w+'px'; canvas.style.height = h+'px';
+          ctx.setTransform(1,0,0,1,0,0);
+          ctx.scale(dpr, dpr);
+          paintCover();
+          if(opened[i]){ canvas.style.display='none'; }
         }
+
+        function scratch(x,y){
+          ctx.beginPath(); ctx.arc(x,y,BR,0,Math.PI*2); ctx.fill();
+          if(++strokes % 8 === 0) check();
+        }
+
         function check(){
           try{
-            const data = ctx.getImageData(0,0,Math.floor(w*scale),Math.floor(h*scale)).data;
-            let transparent = 0; for(let i=3;i<data.length;i+=4){ if(data[i]===0) transparent++; }
-            const ratio = transparent / (w*h*scale*scale);
-            if(ratio>THRESH) reveal();
-          }catch{/* ב部分 דפדפנים חסומים — נתעלם */}
+            const data = ctx.getImageData(0,0,Math.floor(w*dpr),Math.floor(h*dpr)).data;
+            let transparent = 0;
+            for(let i=3;i<data.length;i+=4){ if(data[i]===0) transparent++; }
+            const ratio = transparent / (w*h*dpr*dpr);
+            if(ratio > THRESH) reveal();
+          }catch{}
         }
+
         function reveal(){
           card.classList.add('revealed');
           canvas.style.display = 'none';
@@ -677,21 +644,23 @@
           heartConfetti();
         }
 
-        // אם כבר נפתח קודם
         if(opened[i]){ card.classList.add('revealed'); canvas.style.display='none'; }
 
-        // אירועי גרירה/מגע
         const pos = (e)=>{
           const rect = canvas.getBoundingClientRect();
           const x = (e.touches? e.touches[0].clientX : e.clientX) - rect.left;
           const y = (e.touches? e.touches[0].clientY : e.clientY) - rect.top;
           return {x,y};
         };
-        canvas.addEventListener('pointerdown', e=>{ drawing=true; canvas.setPointerCapture(e.pointerId); const p=pos(e); scratch(p.x,p.y); });
-        canvas.addEventListener('pointermove', e=>{ if(!drawing) return; const p=pos(e); scratch(p.x,p.y); });
+        canvas.addEventListener('pointerdown', e=>{
+          drawing = true; try{ canvas.setPointerCapture(e.pointerId); }catch{}
+          const p = pos(e); scratch(p.x, p.y);
+        });
+        canvas.addEventListener('pointermove', e=>{
+          if(!drawing) return; const p = pos(e); scratch(p.x, p.y);
+        });
         ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=>{ drawing=false; }));
 
-        // התחלת ציור
         resize();
         window.addEventListener('resize', resize);
       }
@@ -703,6 +672,12 @@
       });
     }
 
+    // מניעת גרירת תמונות (אם תרצה להסיר — אפשר)
+    qsa('img').forEach(img=>{
+      img.addEventListener('dragstart', e=> e.preventDefault());
+      img.addEventListener('contextmenu', e=> e.preventDefault());
+    });
+  })();
   </script>
 </body>
 </html>
