@@ -139,16 +139,39 @@
       </div>
     </section>
 
-    <!-- טיימליין (קיצרתי – תשאיר כמו אצלך) -->
+    <!-- טיימליין -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה; תיאור יופיע למטה.</p>
         <div class="timeline" id="timeline">
-          <!-- כפתורים כמו בקוד שלך -->
+          <!-- … השמות/קבצים כמו אצלך … -->
           <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
           <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
-          <!-- ... שאר הכפתורים שלך ... -->
+          <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
+          <button class="chip" type="button" data-photo="assets/places/video.jpg" data-cap="את הכי מתוקה!">שיחות וידאו</button>
+          <button class="chip" type="button" data-photo="assets/places/video2.jpg" data-cap="את עדיין מתוקה!">ועוד שיחות וידאו</button>
+          <button class="chip" type="button" data-photo="assets/places/65.jpg" data-cap="שש-בש כי זה חלק מהאופי שלנו">שש-בש</button>
+          <button class="chip" type="button" data-photo="assets/places/beach.jpg" data-cap="הים — המקום שלימדת אותי לאהוב מחדש">🏖️ הים</button>
+          <button class="chip" type="button" data-photo="assets/places/beach_65.jpg" data-cap="שילוב מנצח">🏖️ שש-בש וים</button>
+          <button class="chip" type="button" data-photo="assets/places/happy.jpg" data-cap="שמחתי להיות איתך ברגע השמח הזה!">רגעים שמחים: היום שהפכת לנהגת</button>
+          <button class="chip" type="button" data-photo="assets/places/sad.jpg" data-cap="שמחתי להיות לצידך גם ברגעים קשים">ורגעים פחות שמחים...</button>
+          <button class="chip" type="button" data-photo="assets/places/omer-adam.jpg" data-cap="Omer Adam😎">🎤 הופעה של עומר אדם</button>
+          <button class="chip" type="button" data-photo="assets/places/shoval.jpg" data-cap="שובלי מאמי"> שובלי ונהוראי</button>
+          <button class="chip" type="button" data-photo="assets/places/taqueria-tlv.jpg" data-cap="המסעדה שלנו: טאקריה 🌯">🌮 טאקריה תל־אביב</button>
+          <button class="chip" type="button" data-photo="assets/places/hiro.jpg" data-cap="כנאפה עם הירו סאן🎌">כנאפה סאן🎌</button>
+          <button class="chip" type="button" data-photo="assets/places/food.jpg" data-cap="לרגע לא הפסקנו לאכול!">עוד אוכל</button>
+          <button class="chip" type="button" data-photo="assets/places/hafgana.jpg" data-cap="אפילו להפגנות הצלחת לקחת אותי!">מפגינים ונהנים</button>
+          <button class="chip" type="button" data-photo="assets/places/hami.jpg" data-cap="פגשנו פיימוס בהפגנה!">מפגינים עם חמי!</button>
+          <button class="chip" type="button" data-photo="assets/places/shoping.jpg" data-cap="שופינג כי אנחנו אוהבים לבזבז כסף">קונים ונהנים🛒</button>
+          <button class="chip" type="button" data-photo="assets/places/stanley.jpg" data-cap="מי היה מאמין שאפול גם לזה?">סטנלי קאפ</button>
+          <button class="chip" type="button" data-photo="assets/places/monika.jpg" data-cap="תודה על תוספת נחמדה לאופי">🎸 הופעת מוניקה סקס</button>
+          <button class="chip" type="button" data-photo="assets/places/tzafon.jpg" data-cap="🏞️הצפון שלנו!">הלילה בצפון🏞️</button>
+          <button class="chip" type="button" data-photo="assets/places/osher.jpg" data-cap="נזכרים בעינייה">🎶 הופעת אושר כהן</button>
+          <button class="chip" type="button" data-photo="assets/places/yasmin.jpg" data-cap="פסטיבל התמר - יסמין מועלם">🎶 פסטיבל התמר - יסמין מועלם</button>
+          <button class="chip" type="button" data-photo="assets/places/omer-tamar.jpg" data-cap="פסטיבל התמר - עומר אדם">🎶 פסטיבל התמר - עומר</button>
+          <button class="chip" type="button" data-photo="assets/places/haild.jpg" data-cap="פסטיבל התמר - איפה הילד">🎶 פסטיבל התמר - איפה הילד</button>
+          <button class="chip" type="button" data-photo="assets/places/mosh.jpg" data-cap="פסטיבל התמר - מוש, אברהם וכל השאר">🎶 פסטיבל התמר - מוש, אברהם וכל השאר</button>
         </div>
       </div>
     </section>
@@ -275,7 +298,7 @@
       const EMO=['💗','💓','💖','💞','💕','💘'];
       for(let i=0;i<24;i++){ const s=document.createElement('span'); s.className='heart'; s.textContent=EMO[Math.floor(Math.random()*EMO.length)];
         s.style.left=(Math.random()*100)+'vw'; s.style.bottom='-20px'; s.style.animationDelay=(Math.random()*0.3)+'s';
-        const $hearts=qs('#hearts'); $hearts.appendChild(s); setTimeout(()=>s.remove(),2700);
+        $hearts.appendChild(s); setTimeout(()=>s.remove(),2700);
       }
     }
 
@@ -301,8 +324,69 @@
       });
     }
 
-    /* הברכה (אותו טקסט שלך – קיצרתי כאן לשמור על אורכו של התשובה) */
-    const blessingText = `... כל הטקסט הארוך שלך כאן ...`;
+    /* הברכה */
+    const blessingText = `עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
+קודם כל מלא מלא מזל טובבבבב!!❤❤
+
+אז עמיתי,
+אני רוצה לאחל לך באמת את כל הטוב שהעולם יכול להציע לך.
+את האישה הכי מיוחדת, מדהימה, אוהבת, אכפתית, מתחשבת, מצחיקה, יפה, חזקה, חכמה ומכילה שקיימת בעולם הזה!
+אה וכמעט שכחתי, את הכי כשרונית בעולם!!!
+לא ברור איך בן אדם עם כל כך הרבה תכונות באופי שלו יכול לחשוב שאין לו אופי🤷‍♂🤦‍♂
+את פשוט הכי טובה עמית!!!!!
+
+את חברה מדהימה, יודעת להקשיב כשצריך, יודעת להצחיק כשצריך, יודעת לתת בראש ולנער כשצריך ותמיד אבל תמיד פה בשבילי לכל דבר!
+את הבן אדם שאני פורק לו כשרע לי, הבן אדם שאני רץ לספר לו כשקורה לי משהו טוב, את באמת כמו הפסיכולוגית האישית שלי!!
+את יודעת לסדר לי הראש ברגע עם המילים שלך ועצם הנוכחות שלך מרגיעה.
+כל אחד צריך עמיתי בחיים שלו שתסדר לו את המוח.
+
+אומנם אנחנו מכירים רק שנה אבל זאת בהחלט הייתה שנה מלאה בחוויות מטורפות בקשר שלנו.
+אני מודה עלייך כל יום שנכנסת לחיים שלי ולימדת אותי מחדש את הערך של המילה ״חברות״.
+
+את גרמת לי להיפתח מחדש ולהכניס אותך לחיים שלי,  אחרי תקופה ארוכה שלא הצלחתי לייצר קשרים חדשים, בגלל כמה אנשים שקראתי להם חברים שלי ובאמת שברו לי את הלב.
+הראת לי באמת איזה אנשים אני רוצה שיהיו סביבי ומה מגיע לי באמת, הראת לי שמגיע לי אנשים כמוך!!!( והלוואי והיה יותר )
+
+אני מאחל לך שרק תמשיכי להתפתח, לחוות ולגדול.
+אני מכיר אותך שנה ובשנה הזאת ראיתי אותך פורחת ומתגברת על הפחדים שלך, שוברת גבולות ואני הכי גאה בך בעולם!!
+את הרבה פעמים חושבת שאת פחות מאנשים אחרים ומורידה לעצמך וזה פאקינג לא נכון!! אז תפסיקי עם זה!! את עמית אוחיון, את הבן אדם הכי מושלם שקיים בעולם הזה ומי שאומר אחרת מנותק…
+אני יודע שעברת כל כך הרבה בחיים ואת פאקינג גיבורה מטורפת שאחרי כל זה את קמה בבוקר מחייכת ושמה זין על העולם ועדיין עם כל זה את פשוט הבן אדם הכי טוב שאני מכיר!
+אם זה לחייך לשומר בחניון או למוכר במכולת,
+לדאוג לכל החברים שלך, לשקר שבאלך לעשות דברים רק כי מישהו אחר רוצה לעשות את זה, או סתם להיות חמודה לאנשים רנדומליים.
+אני יכול להמשיך פה לנצח להגיד כמה טובה ומדהימה ואני מקווה ובטוח שלאט לאט תביני בעצמך כמה את מטורפת ומדהימה, כי אין טובים כמוך וממך!
+
+
+אני יודע שאני יכול לסמוך עלייך בהכל! את הבן אדם שיודע עלי הכי הרבה דברים, את השריטות הכי עמוקות שלי וגם את הדברים הכי טובים.
+את בין האנשים היחידים בעולם הזה שנותנים לי להרגיש שאני יכול להיות אני האמיתי, בלי שום מסכה ובלי שום פוזה. פשוט אני!
+
+אנחנו מכירים כבר שנה  וככל שעובר הזמן אני מבין שאנחנו תקועים אחד עם השנייה לתמיד!!
+וששום ריב או וויכוח לא יצליח להרוס את החברות שיש בנינו, כי הקשר שלנו הוא פשוט חברות אמת ולכל החיים!!
+
+אני בתקופה האחרונה עברתי הרבה שינויים בחיים שלי, וזאת הייתה תקופה מאוד מסובכת בשבילי שלא נשארתי עם הרבה אנשים בחיים שלי, ואת פשוט תמיד היית פה בשבילי כשהייתי צריך.
+
+ועכשיו קצת תודות כי מגיע לך!
+
+אז תודה עמיתי❤
+קודם כל תודה שסמכת עלי מלכתחילה כי זה לא מובן מאליו שתסמכי ככה על גבר,
+תודה שנפתחת בפני וסיפרת לי על עצמך,
+תודה על שהיית שם לעזור לי כשהייתי צריך, 
+תודה שהצחקת אותי כשהייתי עצוב, 
+תודה שידעת להיות כרצינית שצריך, 
+תודה שהיית לידי ברגעים הקשים,
+תודה שסבלת אותי כשהייתי בילתי נסבל ( יודע שאני יכול להיות כזה הרבה פעמים ),
+תודה על איך פגשתי את אמא ועוד מלא סדרות,
+תודה על טעם נהדר בשירים,
+תודה שלימדת אותי לאהוב את הים,
+תודה על האופי שעזרת לי לבנות,
+תודה שקידמת אותי בכל כך הרבה דברים,
+ורשימת התודות לא תיגמר בחיים כנראה, אז פשוט תודה! תודה על הכל!!
+ולתודה האחרונה, עמית באמת פשוט תודה על מי ומה שאת בשבילי!!!! ❤❤
+ואל תשתני בחיים, כי את מושלמת כמו שאת!!!
+
+מזכיר לך שאני פה תמיד בשבילך לכל דבר ובכל זמן שאת צריכה!!!
+והדבר האחרון והכי חשוב לי, אני מאחל לשנינו לשמור על אותו קשר קרוב כזה ובחיים לא לריב, אבל באמת בחיים!
+
+ אוהב אותך הכי הרבה בעולם עמיתי!!❤‍🔥😍😘`;
+
     function setupBlessing(){
       const container = qs('#blessingGrid');
       const parts = blessingText.split(/\n\s*\n/).filter(Boolean);
@@ -318,15 +402,17 @@
         card.appendChild(inner);
         container.appendChild(card);
       });
+
       if(window.gsap && !prefersReducedMotion){
         if(window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-        [...container.children].forEach(el=>{
+        qsa('#blessingGrid .card').forEach((el)=>{
           const eff = el.dataset.effect;
           let vars={opacity:0,y:22,duration:.7,ease:'power2.out'};
           if(eff==='flip') vars={opacity:0,rotationY:90,transformOrigin:'50% 50%',duration:.7};
-          if(['type','mask'].includes(eff)) vars={opacity:0,y:10,duration:.6};
+          if(eff==='type') vars={opacity:0,y:10,duration:.6};
           if(eff==='stamp') vars={opacity:0,scale:.9,duration:.6};
           if(eff==='sparkle') vars={opacity:0,y:18,duration:.7};
+          if(eff==='mask') vars={opacity:0,y:10,duration:.6};
           if(eff==='cascade') vars={opacity:0,y:16,duration:.6};
           if(eff==='checklist') vars={opacity:0,y:18,duration:.6};
           if(eff==='finale') vars={opacity:0,y:30,duration:.8};
@@ -336,7 +422,7 @@
       }
     }
 
-    /* ===== לוח גירוד 12 — עם תמונת לב ממורכזת ===== */
+    /* ===== לוח גירוד 12 ===== */
     const SCRATCH_MAP_KEY='scratch_map_v2';
     const SCRATCH_OPEN_KEY='scratch_open_v2';
     const PRIZES=[
@@ -358,10 +444,6 @@
     function loadOpen(){try{const s=JSON.parse(localStorage.getItem(SCRATCH_OPEN_KEY)); return s&&typeof s==='object'? s : {};}catch{return {}}}
     function saveOpen(o){localStorage.setItem(SCRATCH_OPEN_KEY,JSON.stringify(o));}
 
-    // נטען את תמונת הלב פעם אחת, לשימוש בכל הכרטיסים
-    const HEART_IMG = new Image();
-    HEART_IMG.src = 'assets/heart.jpg';
-
     function setupScratch(){
       const grid=qs('#scratchGrid'); if(!grid) return;
       grid.innerHTML='';
@@ -380,23 +462,45 @@
         const THRESH=0.55;
         const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18;
 
-        // מצייר את תמונת הלב ממורכזת ומוקטנת פרופורציונלית
-        function drawHeart(){
-          if(!HEART_IMG.complete || !HEART_IMG.naturalWidth){
-            HEART_IMG.onload = ()=> paintCover(); // כשהלב נטען – לצבוע שוב
-            return;
+        /* --- טקסט ממורכז אמיתי, עוקף באג RTL של ספארי --- */
+        function drawCenteredLabel(){
+          const label = 'גרדי אותי ✨';
+          const maxW = w * 0.86;
+          const maxH = h * 0.55;
+
+          // נחשב פונט מתאים
+          let fs = Math.floor(Math.min(w,h) * 0.22);
+          fs = Math.max(16, Math.min(26, fs));
+
+          // נצייר LTR ונמקם ידנית לפי width
+          ctx.direction = 'ltr';
+          ctx.textBaseline = 'alphabetic';
+          ctx.fillStyle = '#ff2f75';
+
+          while (fs > 12) {
+            ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
+            const m = ctx.measureText(label);
+            const textW = m.width;
+            const textH = (m.actualBoundingBoxAscent && m.actualBoundingBoxDescent)
+              ? (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent)
+              : fs;
+            if (textW <= maxW && textH <= maxH) break;
+            fs--;
           }
-          const margin = Math.min(w,h) * 0.18; // שוליים כדי שלא יהיה גדול מדי
-          const maxW = w - margin*2;
-          const maxH = h - margin*2;
-          const imgW = HEART_IMG.naturalWidth;
-          const imgH = HEART_IMG.naturalHeight;
-          const scale = Math.min(maxW/imgW, maxH/imgH);
-          const drawW = Math.floor(imgW * scale);
-          const drawH = Math.floor(imgH * scale);
-          const x = Math.floor((w - drawW)/2);
-          const y = Math.floor((h - drawH)/2);
-          ctx.drawImage(HEART_IMG, x, y, drawW, drawH);
+
+          const m = ctx.measureText(label);
+          const textW = m.width;
+          const ascent = m.actualBoundingBoxAscent || fs*0.8;
+          const descent = m.actualBoundingBoxDescent || fs*0.2;
+          const x = Math.round((w - textW)/2);                                  // שמאל ממורכז
+          const y = Math.round((h - (ascent + descent))/2 + ascent);            // אמצע אנכי
+
+          // מתאר לבן לניגודיות
+          ctx.lineJoin='round'; ctx.miterLimit=2;
+          ctx.lineWidth = Math.max(2, Math.floor(fs * 0.16));
+          ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+          ctx.strokeText(label, x, y);
+          ctx.fillText(label, x, y);
         }
 
         function paintCover(){
@@ -405,7 +509,7 @@
           ctx.clearRect(0,0,w,h);
           ctx.fillStyle='#ffd5e5'; ctx.fillRect(0,0,w,h);
           ctx.strokeStyle='#ffc1d6'; ctx.lineWidth=2; ctx.strokeRect(1,1,w-2,h-2);
-          drawHeart();               // כאן מציירים את הלב
+          drawCenteredLabel();
           ctx.restore();
           ctx.globalCompositeOperation='destination-out';
         }
@@ -438,6 +542,7 @@
         ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=> drawing=false));
 
         resize();
+        if (document.fonts && document.fonts.ready) { document.fonts.ready.then(()=> paintCover()); }
         window.addEventListener('resize', resize);
       }
 
