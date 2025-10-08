@@ -25,12 +25,10 @@
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     a{color:var(--rose)} img{max-width:100%;}
 
-    /* כפתורים */
     .btn{background:var(--pink);color:#fff;border:0;border-radius:14px;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease}
     .btn:hover{transform:translateY(-1px)} .btn:active{transform:translateY(0)}
     .btn.ghost{background:#fff;color:var(--pink);border:2px solid var(--pink)}
 
-    /* שער סיסמה */
     .gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--pink-2),#fff);z-index:9999}
     .gate .card{width:min(520px,92vw);background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:28px}
     .gate h1{margin:0 0 6px;font-size:28px;color:var(--rose)}
@@ -39,7 +37,6 @@
     .input{flex:1;border:2px solid var(--pink-3);border-radius:12px;padding:12px 14px;font-size:16px}
     .error{color:#c30052;margin-top:10px;display:none}
 
-    /* ספירה לאחור */
     .countdown{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,var(--pink-2));z-index:8888;text-align:center;padding:20px}
     .countdown h2{color:var(--rose);font-size:26px;margin:0 0 12px}
     .clock{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -48,13 +45,11 @@
     .time-box .lbl{font-size:12px;color:var(--muted)}
     .hint{margin-top:14px;color:var(--muted);font-size:14px}
 
-    /* עיטורים */
     .decor{position:fixed;inset:0;pointer-events:none;opacity:.25;z-index:0}
     .blob{position:absolute;filter:blur(50px);opacity:.4}
     .b1{width:340px;height:340px;background:var(--pink-3);top:-60px;right:-40px;border-radius:50%}
     .b2{width:280px;height:280px;background:#ffe5ee;bottom:-40px;left:-60px;border-radius:50%}
 
-    /* פריסת עמוד */
     .app{position:relative;z-index:1;display:none}
     header{min-height:92vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;text-align:center}
     .title{font-size:48px;line-height:1.05;margin:0 0 12px;color:var(--rose);letter-spacing:1px}
@@ -62,7 +57,6 @@
     .meta{margin-top:10px;color:var(--muted)}
     .actions{display:flex;gap:10px;margin-top:18px;justify-content:center}
 
-    /* מקטעים */
     section{padding:36px 18px}
     .sec{max-width:880px;margin:0 auto}
     .card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px}
@@ -72,15 +66,12 @@
     .h{margin:0 0 12px;color:var(--pink);font-size:22px}
     .p{white-space:pre-line;line-height:1.8;font-size:18px}
 
-    /* טיימליין */
     .timeline{display:flex;gap:12px;overflow:auto;padding:6px 2px;scroll-snap-type:x proximity}
     .chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--pink-3);color:#333;padding:10px 14px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);cursor:pointer;scroll-snap-align:center}
 
-    /* וידאו/אודיו */
     .video-card video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
     .audio-card audio{width:100%}
 
-    /* לייטבוקס משופר */
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:9000}
     .lightbox.show{display:flex}
     .lb-content{display:flex;flex-direction:column;gap:6px;background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:min(920px,96vw);max-height:90vh;width:100%;overflow:hidden}
@@ -89,12 +80,11 @@
     .lb-cap{padding:10px 12px;font-weight:700;color:#444;text-align:center}
     .lb-close{position:fixed;top:16px;left:16px;background:var(--pink);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
 
-    /* קונפטי לבבות */
     .hearts{position:fixed;inset:0;pointer-events:none;z-index:7777}
     .heart{position:absolute;font-size:18px;animation:floatUp 2.4s ease-in forwards}
     @keyframes floatUp{from{transform:translateY(0) scale(.9);opacity:.95} to{transform:translateY(-120vh) scale(1.3);opacity:0}}
 
-    /* לוח גירוד – חד וקריא */
+    /* לוח גירוד */
     .scratch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;user-select:none;-webkit-user-select:none}
     @media(min-width:880px){.scratch-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
     .scratch-card{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:128px}
@@ -105,18 +95,13 @@
     .scratch-canvas{position:absolute;inset:0;touch-action:none;background:transparent}
     .scratch-card.revealed .scratch-canvas{display:none}
 
-    /* נגישות ותנועה מופחתת */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    @media (prefers-reduced-motion: reduce){
-      *{scroll-behavior:auto}
-    }
+    @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto} }
   </style>
 </head>
 <body>
-  <!-- עיטורים -->
   <div class="decor" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
 
-  <!-- שער סיסמה -->
   <div id="gate" class="gate">
     <div class="card">
       <h1>🔒 היי! יש כאן הפתעה שמורה לעמית</h1>
@@ -130,7 +115,6 @@
     </div>
   </div>
 
-  <!-- ספירה לאחור -->
   <div id="countdown" class="countdown">
     <div>
       <h2>🎂 זה כמעט כאן! ההפתעה נפתחת ב־20/10/2025</h2>
@@ -139,7 +123,6 @@
     </div>
   </div>
 
-  <!-- האפליקציה -->
   <main id="app" class="app" aria-live="polite">
     <header class="sec">
       <h1 class="title" id="bigTitle">עמיתוווו</h1>
@@ -151,7 +134,6 @@
       </div>
     </header>
 
-    <!-- סרטון ברכה (לפני השיר) -->
     <section class="sec">
       <div class="card video-card">
         <h3 class="h">🎥 סרטון ברכה</h3>
@@ -160,7 +142,6 @@
       </div>
     </section>
 
-    <!-- מוזיקה -->
     <section class="sec">
       <div class="card audio-card">
         <h3 class="h">🎶 השיר שלנו: Pop Danthology 2012</h3>
@@ -169,13 +150,11 @@
       </div>
     </section>
 
-    <!-- טיימליין/מקומות + לייטבוקס -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה; תיאור יופיע למטה.</p>
         <div class="timeline" id="timeline">
-          <!-- שמור שמות קבצים כמו שיש לך -->
           <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
           <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
           <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
@@ -206,7 +185,6 @@
       </div>
     </section>
 
-    <!-- מחולל מחמאות -->
     <section class="sec">
       <div class="card">
         <h3 class="h">💬 מחולל מחמאות לעמית</h3>
@@ -217,14 +195,10 @@
       </div>
     </section>
 
-    <!-- הברכה — חשיפה על גלילה, אפקט לכל מקטע -->
     <section class="sec">
-      <div class="grid cols-2" id="blessingGrid">
-        <!-- ממולא דינמית -->
-      </div>
+      <div class="grid cols-2" id="blessingGrid"></div>
     </section>
 
-    <!-- לוח גירוד 12 פריטים -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🪄 לוח גירוד המתנות</h3>
@@ -236,17 +210,14 @@
       </div>
     </section>
 
-    <!-- פוטר -->
     <section class="sec" style="padding-bottom:80px">
       <div class="card" style="text-align:center">
         <p class="hint">נבנה באהבה. צבעים: ורוד/לבן בלבד. אין סגול 🙅‍♀️</p>
       </div>
     </section>
 
-    <!-- שכבת לבבות -->
     <div id="hearts" class="hearts" aria-hidden="true"></div>
 
-    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע">
       <button class="lb-close" id="lbClose" aria-label="סגירה" type="button">✕</button>
       <div class="lb-content">
@@ -263,7 +234,6 @@
     const qsa = (s,el=document)=> [...el.querySelectorAll(s)];
     const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ===== Gate =====
     const PASSWORD_HASH = "4a46b0304f5d192b82dfe73eeebbbe2c0ac569338a14c09e17643ad14709b3cd";
     const BDAY_ISO = "2025-10-20T00:00:00+03:00";
 
@@ -307,7 +277,6 @@
       tick(); setInterval(tick,1000);
     }
 
-    // ===== App =====
     function startApp(){
       $app.style.display='block';
       if(window.gsap && !prefersReducedMotion){
@@ -319,11 +288,9 @@
       setupScratch();
     }
 
-    // כפתורים
     $reveal.addEventListener('click', async ()=>{ heartConfetti(); await sleep(120); window.scrollTo({top:window.innerHeight,behavior:'smooth'}); });
     $playSong.addEventListener('click', ()=>{ $song.play().catch(()=>{}); });
 
-    // ===== מחולל מחמאות =====
     const compliments = ["את הכי רזה","הכי יפה בעולם","לב של זהב","הכי מצחיקה בחדר","חכמה בטירוף","עוצמה שקטה שנוכחת","החיבוק שלך מתקן ימים קשים","חיוך שמרים מצב רוח בשנייה","מלכת הוייב הטוב","אלופת ה'יהיה טוב — בואי נזיז את זה'","אינטואיציה של גאון","הכי אמיתית שיש","קשובה כמו פסיכולוגית, זורמת כמו חברה הכי טובה","סטייל של מיליון דולר בלי להשתדל","עושה אנשים סביבך יותר טובים","הומור שמגרש עננים","סופר-כישרונית, נקודה","מנהלת כאוס כמו בוס","לב של צ'יפס חם — ממכר","ה-GOAT של החברות","ה-MVP של השנה שלי","הכי 'אפשר לסמוך עליה' שאני מכיר","את הופכת זיכרונות לסרט","הפתעות קטנות — רגעים גדולים","אומץ שנדבק","המבט שלך אומר 'סמוך עליי' — ותמיד עובד","את עושה טוב לעולם בלי לעשות מזה עניין","אחת ויחידה — עמית אוחיון 💥"];
     qs('#nextCompliment').addEventListener('click', ()=>{
       const t=compliments[Math.floor(Math.random()*compliments.length)];
@@ -331,7 +298,6 @@
       if(window.gsap && !prefersReducedMotion) gsap.fromTo(el,{scale:.92,opacity:.7},{scale:1,opacity:1,duration:.2});
     });
 
-    // ===== לבבות =====
     function heartConfetti(){
       if(prefersReducedMotion) return;
       const EMO=['💗','💓','💖','💞','💕','💘'];
@@ -341,9 +307,7 @@
       }
     }
 
-    // ===== לייטבוקס =====
     const $lightbox=qs('#lightbox'), $lbImg=qs('#lbImg'), $lbCap=qs('#lbCap'), $lbClose=qs('#lbClose');
-
     function openLightbox(src, cap){
       if(!src) return;
       $lbCap.textContent = cap || '';
@@ -376,7 +340,6 @@
       });
     }
 
-    // ===== הברכה — בנייה למקטעים + אפקט גלילה =====
     const blessingText = `עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
 קודם כל מלא מלא מזל טובבבבב!!❤❤
 
@@ -475,7 +438,7 @@
       }
     }
 
-    // ===== לוח גירוד 12 =====
+    /* ===== לוח גירוד 12 ===== */
     const SCRATCH_MAP_KEY='scratch_map_v2';
     const SCRATCH_OPEN_KEY='scratch_open_v2';
     const PRIZES=[
@@ -515,43 +478,68 @@
         const THRESH=0.55;
         const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18; // מברשת גדולה יותר למגע
 
-        function getFittedFontSize(){
-          // התאמה לרוחב – לשמור על קריאות גם בכרטיסים קטנים
-          let fs = Math.floor(Math.min(w, h) * 0.18);
-          fs = Math.max(16, Math.min(26, fs));
+        function drawCoverText(){
+          // טקסט מרכזי, שבירה לשתי שורות אם צריך, קו מתאר לבן עבה
+          const labelMain = 'גרדי אותי';
+          const labelEmoji = w >= 220 ? ' ✨' : ''; // אמוג’י רק כשהרוחב מרשה
+          const full = labelMain + labelEmoji;
+
+          const maxW = w * 0.86;
+          // התחלת גודל – יחסית לגודל הכרטיס
+          let fs = Math.floor(Math.min(w, h) * 0.22);
+          fs = Math.max(16, Math.min(28, fs));
+
           ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
-          let maxW = w * 0.86;
-          let m = ctx.measureText('גרדי אותי ✨');
-          while (m.width > maxW && fs > 16) {
-            fs--;
-            ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
-            m = ctx.measureText('גרדי אותי ✨');
+          let width = ctx.measureText(full).width;
+
+          let lines = [full];
+          if (width > maxW) {
+            // שבירה לשתי שורות
+            lines = ['גרדי','אותי'];
+            // מדוד לפי "אותי" (הארוכה פחות/יותר), וקטן עד שנכנס
+            while (ctx.measureText('אותי').width > maxW && fs > 16) {
+              fs--; ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
+            }
+          } else {
+            // אם שורה אחת – הקטן עד שייכנס היטב
+            while (width > maxW && fs > 16) {
+              fs--; ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
+              width = ctx.measureText(full).width;
+            }
           }
-          return fs;
+
+          ctx.textAlign='center';
+          ctx.textBaseline='middle';
+          ctx.direction='ltr'; // מונע הזזות מוזרות ב-iOS עם RTL
+          const lineH = Math.round(fs * 1.1);
+          const totalH = lineH * lines.length;
+          const startY = -Math.round((totalH - lineH)/2);
+
+          ctx.save();
+          ctx.translate(Math.round(w/2), Math.round(h/2));
+
+          ctx.lineJoin='round'; ctx.miterLimit=2;
+          ctx.lineWidth = Math.max(2, Math.floor(fs * 0.18));
+          ctx.strokeStyle='rgba(255,255,255,0.96)';
+          ctx.fillStyle='#ff2f75';
+
+          lines.forEach((ln, idx)=>{
+            const y = startY + idx * lineH;
+            ctx.strokeText(ln, 0, y);
+            ctx.fillText(ln, 0, y);
+          });
+
+          ctx.restore();
         }
 
         function paintCover(){
           ctx.save();
           ctx.globalCompositeOperation='source-over';
           ctx.clearRect(0,0,w,h);
-          // שכבת ורוד בהיר + מסגרת
+          // רקע ורוד + מסגרת
           ctx.fillStyle='#ffd5e5'; ctx.fillRect(0,0,w,h);
           ctx.strokeStyle='#ffc1d6'; ctx.lineWidth=2; ctx.strokeRect(1,1,w-2,h-2);
-
-          // טקסט חד במרכז עם קו מתאר לבן וניגודיות גבוהה
-          const fs = getFittedFontSize();
-          ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
-          ctx.textAlign='center'; ctx.textBaseline='middle';
-          const cx = Math.round(w/2), cy = Math.round(h/2);
-
-          ctx.lineJoin='round'; ctx.miterLimit=2;
-          ctx.lineWidth = Math.max(2, Math.floor(fs * 0.16));
-          ctx.strokeStyle='rgba(255,255,255,0.95)';
-          ctx.strokeText('גרדי אותי ✨', cx, cy);
-
-          ctx.fillStyle='#ff2f75'; // ורוד כהה יותר לניגודיות
-          ctx.fillText('גרדי אותי ✨', cx, cy);
-
+          drawCoverText();
           ctx.restore();
           // מצב מחיקה לגרוד
           ctx.globalCompositeOperation='destination-out';
@@ -593,10 +581,7 @@
         ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=> drawing=false));
 
         resize();
-        // ציור חוזר אחרי טעינת הפונטים כדי למנוע טשטוש/פונט חלופי
-        if (document.fonts && document.fonts.ready) {
-          document.fonts.ready.then(()=> paintCover());
-        }
+        if (document.fonts && document.fonts.ready) { document.fonts.ready.then(()=> paintCover()); }
         window.addEventListener('resize', resize);
       }
 
@@ -607,7 +592,6 @@
       });
     }
 
-    // מניעת גרירת תמונות (בחירה)
     qsa('img').forEach(img=>{
       img.addEventListener('dragstart', e=> e.preventDefault());
       img.addEventListener('contextmenu', e=> e.preventDefault());
