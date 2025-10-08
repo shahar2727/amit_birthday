@@ -14,21 +14,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-
   <style>
-    :root{
-      --pink:#ff6fa3; --pink-2:#ffd5e5; --pink-3:#ffc1d6;
-      --rose:#ff2f75; --bg:#fff7fb; --ink:#2a2a2a;
-      --card:#ffffff; --muted:#7a7a7a; --shadow:0 10px 30px rgba(255,111,163,.15);
-    }
+    :root{ --pink:#ff6fa3; --pink-2:#ffd5e5; --pink-3:#ffc1d6; --rose:#ff2f75; --bg:#fff7fb; --ink:#2a2a2a; --card:#ffffff; --muted:#7a7a7a; --shadow:0 10px 30px rgba(255,111,163,.15) }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:var(--rose)} img{max-width:100%;}
-
+    a{color:var(--rose)} img{max-width:100%}
     .btn{background:var(--pink);color:#fff;border:0;border-radius:14px;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease}
     .btn:hover{transform:translateY(-1px)} .btn:active{transform:translateY(0)}
     .btn.ghost{background:#fff;color:var(--pink);border:2px solid var(--pink)}
-
     .gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--pink-2),#fff);z-index:9999}
     .gate .card{width:min(520px,92vw);background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:28px}
     .gate h1{margin:0 0 6px;font-size:28px;color:var(--rose)}
@@ -36,7 +29,6 @@
     .gate .row{display:flex;gap:10px;margin-top:10px}
     .input{flex:1;border:2px solid var(--pink-3);border-radius:12px;padding:12px 14px;font-size:16px}
     .error{color:#c30052;margin-top:10px;display:none}
-
     .countdown{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,var(--pink-2));z-index:8888;text-align:center;padding:20px}
     .countdown h2{color:var(--rose);font-size:26px;margin:0 0 12px}
     .clock{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -44,19 +36,16 @@
     .time-box .num{font-size:28px;font-weight:900;color:var(--pink)}
     .time-box .lbl{font-size:12px;color:var(--muted)}
     .hint{margin-top:14px;color:var(--muted);font-size:14px}
-
     .decor{position:fixed;inset:0;pointer-events:none;opacity:.25;z-index:0}
     .blob{position:absolute;filter:blur(50px);opacity:.4}
     .b1{width:340px;height:340px;background:var(--pink-3);top:-60px;right:-40px;border-radius:50%}
     .b2{width:280px;height:280px;background:#ffe5ee;bottom:-40px;left:-60px;border-radius:50%}
-
     .app{position:relative;z-index:1;display:none}
     header{min-height:92vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;text-align:center}
     .title{font-size:48px;line-height:1.05;margin:0 0 12px;color:var(--rose);letter-spacing:1px}
     .subtitle{margin:0;color:#444;font-weight:700}
     .meta{margin-top:10px;color:var(--muted)}
     .actions{display:flex;gap:10px;margin-top:18px;justify-content:center}
-
     section{padding:36px 18px}
     .sec{max-width:880px;margin:0 auto}
     .card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px}
@@ -65,13 +54,10 @@
     @media(max-width:780px){.grid.cols-2{grid-template-columns:1fr}}
     .h{margin:0 0 12px;color:var(--pink);font-size:22px}
     .p{white-space:pre-line;line-height:1.8;font-size:18px}
-
     .timeline{display:flex;gap:12px;overflow:auto;padding:6px 2px;scroll-snap-type:x proximity}
     .chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--pink-3);color:#333;padding:10px 14px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);cursor:pointer;scroll-snap-align:center}
-
     .video-card video{width:100%;max-height:70vh;border-radius:12px;background:#000;display:block}
     .audio-card audio{width:100%}
-
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:9000}
     .lightbox.show{display:flex}
     .lb-content{display:flex;flex-direction:column;gap:6px;background:#fff;border-radius:16px;box-shadow:var(--shadow);max-width:min(920px,96vw);max-height:90vh;width:100%;overflow:hidden}
@@ -79,11 +65,9 @@
     .lb-content img{max-width:100%;max-height:80vh;object-fit:contain;background:#000;display:block}
     .lb-cap{padding:10px 12px;font-weight:700;color:#444;text-align:center}
     .lb-close{position:fixed;top:16px;left:16px;background:var(--pink);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:18px;cursor:pointer;box-shadow:var(--shadow)}
-
     .hearts{position:fixed;inset:0;pointer-events:none;z-index:7777}
     .heart{position:absolute;font-size:18px;animation:floatUp 2.4s ease-in forwards}
     @keyframes floatUp{from{transform:translateY(0) scale(.9);opacity:.95} to{transform:translateY(-120vh) scale(1.3);opacity:0}}
-
     /* לוח גירוד */
     .scratch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;user-select:none;-webkit-user-select:none}
     @media(min-width:880px){.scratch-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
@@ -94,14 +78,15 @@
     .scratch-content .sub{font-weight:700;font-size:clamp(12px,3.2vw,15px);color:#666;margin-top:6px;line-height:1.3;word-break:break-word}
     .scratch-canvas{position:absolute;inset:0;touch-action:none;background:transparent}
     .scratch-card.revealed .scratch-canvas{display:none}
-
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto} }
   </style>
 </head>
 <body>
+  <!-- עיטורים -->
   <div class="decor" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
 
+  <!-- שער סיסמה -->
   <div id="gate" class="gate">
     <div class="card">
       <h1>🔒 היי! יש כאן הפתעה שמורה לעמית</h1>
@@ -115,6 +100,7 @@
     </div>
   </div>
 
+  <!-- ספירה לאחור -->
   <div id="countdown" class="countdown">
     <div>
       <h2>🎂 זה כמעט כאן! ההפתעה נפתחת ב־20/10/2025</h2>
@@ -123,6 +109,7 @@
     </div>
   </div>
 
+  <!-- האפליקציה -->
   <main id="app" class="app" aria-live="polite">
     <header class="sec">
       <h1 class="title" id="bigTitle">עמיתוווו</h1>
@@ -134,6 +121,7 @@
       </div>
     </header>
 
+    <!-- וידאו -->
     <section class="sec">
       <div class="card video-card">
         <h3 class="h">🎥 סרטון ברכה</h3>
@@ -142,6 +130,7 @@
       </div>
     </section>
 
+    <!-- מוזיקה -->
     <section class="sec">
       <div class="card audio-card">
         <h3 class="h">🎶 השיר שלנו: Pop Danthology 2012</h3>
@@ -150,11 +139,13 @@
       </div>
     </section>
 
+    <!-- טיימליין -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה; תיאור יופיע למטה.</p>
         <div class="timeline" id="timeline">
+          <!-- (השארתי את הרשימה שהבאת) -->
           <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
           <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
           <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
@@ -185,6 +176,7 @@
       </div>
     </section>
 
+    <!-- מחולל מחמאות -->
     <section class="sec">
       <div class="card">
         <h3 class="h">💬 מחולל מחמאות לעמית</h3>
@@ -195,10 +187,12 @@
       </div>
     </section>
 
+    <!-- הברכה -->
     <section class="sec">
       <div class="grid cols-2" id="blessingGrid"></div>
     </section>
 
+    <!-- לוח גירוד -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🪄 לוח גירוד המתנות</h3>
@@ -210,14 +204,15 @@
       </div>
     </section>
 
+    <!-- פוטר -->
     <section class="sec" style="padding-bottom:80px">
       <div class="card" style="text-align:center">
         <p class="hint">נבנה באהבה. צבעים: ורוד/לבן בלבד. אין סגול 🙅‍♀️</p>
       </div>
     </section>
 
+    <!-- לבבות + לייטבוקס -->
     <div id="hearts" class="hearts" aria-hidden="true"></div>
-
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מהאירוע">
       <button class="lb-close" id="lbClose" aria-label="סגירה" type="button">✕</button>
       <div class="lb-content">
@@ -234,21 +229,18 @@
     const qsa = (s,el=document)=> [...el.querySelectorAll(s)];
     const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    /* ===== Gate ===== */
     const PASSWORD_HASH = "4a46b0304f5d192b82dfe73eeebbbe2c0ac569338a14c09e17643ad14709b3cd";
     const BDAY_ISO = "2025-10-20T00:00:00+03:00";
-
     const $gate=qs('#gate'), $err=qs('#err'), $countdown=qs('#countdown'), $clock=qs('#clock'), $app=qs('#app');
     const $song=qs('#song'), $playSong=qs('#playSong'), $reveal=qs('#reveal'), $hearts=qs('#hearts'), $previewHint=qs('#previewHint');
-
     const url = new URL(location.href);
     const isPreview = url.searchParams.get('preview') === '1';
     if(isPreview){ $previewHint.style.display='block'; }
 
     async function sha256Hex(str){
-      try{
-        const enc=new TextEncoder(); const buf=await crypto.subtle.digest('SHA-256',enc.encode(str));
-        return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-      }catch{ return null; }
+      try{ const enc=new TextEncoder(); const buf=await crypto.subtle.digest('SHA-256',enc.encode(str));
+        return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); }catch{ return null; }
     }
     async function checkPassword(pw){ const hex=await sha256Hex(pw); return hex? hex===PASSWORD_HASH : pw==='amito22'; }
 
@@ -277,6 +269,7 @@
       tick(); setInterval(tick,1000);
     }
 
+    /* ===== App ===== */
     function startApp(){
       $app.style.display='block';
       if(window.gsap && !prefersReducedMotion){
@@ -289,8 +282,9 @@
     }
 
     $reveal.addEventListener('click', async ()=>{ heartConfetti(); await sleep(120); window.scrollTo({top:window.innerHeight,behavior:'smooth'}); });
-    $playSong.addEventListener('click', ()=>{ $song.play().catch(()=>{}); });
+    $playSong.addEventListener('click', ()=>{ $song.play().catch(()=>{}) });
 
+    /* מחולל מחמאות */
     const compliments = ["את הכי רזה","הכי יפה בעולם","לב של זהב","הכי מצחיקה בחדר","חכמה בטירוף","עוצמה שקטה שנוכחת","החיבוק שלך מתקן ימים קשים","חיוך שמרים מצב רוח בשנייה","מלכת הוייב הטוב","אלופת ה'יהיה טוב — בואי נזיז את זה'","אינטואיציה של גאון","הכי אמיתית שיש","קשובה כמו פסיכולוגית, זורמת כמו חברה הכי טובה","סטייל של מיליון דולר בלי להשתדל","עושה אנשים סביבך יותר טובים","הומור שמגרש עננים","סופר-כישרונית, נקודה","מנהלת כאוס כמו בוס","לב של צ'יפס חם — ממכר","ה-GOAT של החברות","ה-MVP של השנה שלי","הכי 'אפשר לסמוך עליה' שאני מכיר","את הופכת זיכרונות לסרט","הפתעות קטנות — רגעים גדולים","אומץ שנדבק","המבט שלך אומר 'סמוך עליי' — ותמיד עובד","את עושה טוב לעולם בלי לעשות מזה עניין","אחת ויחידה — עמית אוחיון 💥"];
     qs('#nextCompliment').addEventListener('click', ()=>{
       const t=compliments[Math.floor(Math.random()*compliments.length)];
@@ -298,6 +292,7 @@
       if(window.gsap && !prefersReducedMotion) gsap.fromTo(el,{scale:.92,opacity:.7},{scale:1,opacity:1,duration:.2});
     });
 
+    /* לבבות */
     function heartConfetti(){
       if(prefersReducedMotion) return;
       const EMO=['💗','💓','💖','💞','💕','💘'];
@@ -307,31 +302,20 @@
       }
     }
 
+    /* לייטבוקס */
     const $lightbox=qs('#lightbox'), $lbImg=qs('#lbImg'), $lbCap=qs('#lbCap'), $lbClose=qs('#lbClose');
     function openLightbox(src, cap){
-      if(!src) return;
-      $lbCap.textContent = cap || '';
-      const base = src.split('/').pop() || '';
-      const stem = base.replace(/\.(jpe?g|webp|png)$/i,'');
-      const exts = ['.jpg','.jpeg','.webp','.png'];
-      const withPath = p => p.startsWith('assets/places/') ? p : 'assets/places/'+p;
+      if(!src) return; $lbCap.textContent = cap || '';
+      const base = src.split('/').pop() || ''; const stem = base.replace(/\.(jpe?g|webp|png)$/i,'');
+      const exts = ['.jpg','.jpeg','.webp','.png']; const withPath = p => p.startsWith('assets/places/') ? p : 'assets/places/'+p;
       const candidates = [src, withPath(base), ...exts.map(e => withPath(stem+e))];
-
-      let i = 0;
-      $lbImg.onerror = ()=>{
-        i++;
-        if(i < candidates.length){ $lbImg.src = candidates[i]; }
-        else { $lbImg.removeAttribute('src'); $lbCap.textContent = (cap? cap+' — ' : '') + 'תמונה תעלה בהמשך'; }
-      };
-      $lbImg.src = candidates[0];
-      $lightbox.classList.add('show');
-      $lightbox.style.display='flex';
+      let i=0; $lbImg.onerror=()=>{ i++; if(i<candidates.length){ $lbImg.src=candidates[i]; } else { $lbImg.removeAttribute('src'); $lbCap.textContent=(cap? cap+' — ' : '')+'תמונה תעלה בהמשך'; } };
+      $lbImg.src=candidates[0]; $lightbox.classList.add('show'); $lightbox.style.display='flex';
     }
     function closeLightbox(){ $lightbox.classList.remove('show'); $lightbox.style.display='none'; $lbImg.removeAttribute('src'); }
     $lbClose.addEventListener('click', closeLightbox);
-    $lightbox.addEventListener('click', e=>{ if(e.target===$lightbox) closeLightbox(); });
-    window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox(); });
-
+    $lightbox.addEventListener('click', e=>{ if(e.target===$lightbox) closeLightbox() });
+    window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox() });
     function setupTimelineLightbox(){
       qsa('#timeline .chip').forEach(btn=>{
         if(!btn.type) btn.type='button';
@@ -340,6 +324,7 @@
       });
     }
 
+    /* הברכה */
     const blessingText = `עמיתווו שלייייי יש לך היום יום הולדת ואומנם את שונאת את היום הזה אבל בשבילי זאת הזדמנות להגיד לך תודה ולהראות לך כמה את בן אדם מדהים!!
 קודם כל מלא מלא מזל טובבבבב!!❤❤
 
@@ -409,9 +394,8 @@
       container.innerHTML = '';
       parts.forEach((txt, i)=>{
         const card = document.createElement('div');
-        const eff = effectsCycle[i % effectsCycle.length];
         card.className = 'card';
-        card.dataset.effect = eff;
+        card.dataset.effect = effectsCycle[i % effectsCycle.length];
         const inner = document.createElement('div');
         inner.className = 'p';
         inner.textContent = txt;
@@ -476,72 +460,48 @@
 
         let w=0,h=0,dpr=1; let drawing=false; let strokes=0;
         const THRESH=0.55;
-        const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18; // מברשת גדולה יותר למגע
+        const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18; // מברשת מעט גדולה במגע
 
-        function drawCoverText(){
-          // טקסט מרכזי, שבירה לשתי שורות אם צריך, קו מתאר לבן עבה
-          const labelMain = 'גרדי אותי';
-          const labelEmoji = w >= 220 ? ' ✨' : ''; // אמוג’י רק כשהרוחב מרשה
-          const full = labelMain + labelEmoji;
+        function drawCenteredLabel(){
+          // טקסט יחיד, ממורכז לחלוטין
+          const label = 'גרדי אותי ✨';
+          const maxW = w * 0.88;       // שוליים
+          const maxH = h * 0.6;
 
-          const maxW = w * 0.86;
-          // התחלת גודל – יחסית לגודל הכרטיס
-          let fs = Math.floor(Math.min(w, h) * 0.22);
-          fs = Math.max(16, Math.min(28, fs));
+          // גודל התחלתי יחסי לגובה/רוחב
+          let fs = Math.floor(Math.min(w,h) * 0.22);
+          fs = Math.max(14, Math.min(28, fs));
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#ff2f75';
+          ctx.lineJoin = 'round';
+          ctx.miterLimit = 2;
 
-          ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
-          let width = ctx.measureText(full).width;
-
-          let lines = [full];
-          if (width > maxW) {
-            // שבירה לשתי שורות
-            lines = ['גרדי','אותי'];
-            // מדוד לפי "אותי" (הארוכה פחות/יותר), וקטן עד שנכנס
-            while (ctx.measureText('אותי').width > maxW && fs > 16) {
-              fs--; ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
-            }
-          } else {
-            // אם שורה אחת – הקטן עד שייכנס היטב
-            while (width > maxW && fs > 16) {
-              fs--; ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
-              width = ctx.measureText(full).width;
-            }
+          // הקטן עד שנכנס לרוחב ולגובה
+          while (fs > 12) {
+            ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
+            const m = ctx.measureText(label);
+            const textW = m.width;
+            const textH = fs; // קירוב טוב לגובה
+            if (textW <= maxW && textH <= maxH) break;
+            fs--;
           }
 
-          ctx.textAlign='center';
-          ctx.textBaseline='middle';
-          ctx.direction='ltr'; // מונע הזזות מוזרות ב-iOS עם RTL
-          const lineH = Math.round(fs * 1.1);
-          const totalH = lineH * lines.length;
-          const startY = -Math.round((totalH - lineH)/2);
-
-          ctx.save();
-          ctx.translate(Math.round(w/2), Math.round(h/2));
-
-          ctx.lineJoin='round'; ctx.miterLimit=2;
-          ctx.lineWidth = Math.max(2, Math.floor(fs * 0.18));
-          ctx.strokeStyle='rgba(255,255,255,0.96)';
-          ctx.fillStyle='#ff2f75';
-
-          lines.forEach((ln, idx)=>{
-            const y = startY + idx * lineH;
-            ctx.strokeText(ln, 0, y);
-            ctx.fillText(ln, 0, y);
-          });
-
-          ctx.restore();
+          // קו מתאר לבן עדין לניגודיות
+          ctx.lineWidth = Math.max(2, Math.floor(fs * 0.16));
+          ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+          ctx.strokeText(label, Math.round(w/2), Math.round(h/2));
+          ctx.fillText(label, Math.round(w/2), Math.round(h/2));
         }
 
         function paintCover(){
           ctx.save();
           ctx.globalCompositeOperation='source-over';
           ctx.clearRect(0,0,w,h);
-          // רקע ורוד + מסגרת
           ctx.fillStyle='#ffd5e5'; ctx.fillRect(0,0,w,h);
           ctx.strokeStyle='#ffc1d6'; ctx.lineWidth=2; ctx.strokeRect(1,1,w-2,h-2);
-          drawCoverText();
+          drawCenteredLabel();
           ctx.restore();
-          // מצב מחיקה לגרוד
           ctx.globalCompositeOperation='destination-out';
         }
 
@@ -552,30 +512,22 @@
           h=Math.max(128, Math.floor(r.height));
           canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr);
           canvas.style.width=w+'px'; canvas.style.height=h+'px';
-          ctx.setTransform(dpr,0,0,dpr,0,0); // קנבס חד
+          ctx.setTransform(dpr,0,0,dpr,0,0); // חד על רטינה
           paintCover();
           if(opened[i]) canvas.style.display='none';
         }
 
         function scratch(x,y){ ctx.beginPath(); ctx.arc(x,y,BR,0,Math.PI*2); ctx.fill(); if(++strokes%8===0) check(); }
-        function check(){
-          try{
-            const data=ctx.getImageData(0,0,Math.floor(w*dpr),Math.floor(h*dpr)).data;
-            let transparent=0; for(let i=3;i<data.length;i+=4){ if(data[i]===0) transparent++; }
-            const ratio= transparent / (w*h*dpr*dpr);
-            if(ratio>THRESH) reveal();
-          }catch{}
-        }
+        function check(){ try{
+          const data=ctx.getImageData(0,0,Math.floor(w*dpr),Math.floor(h*dpr)).data;
+          let transparent=0; for(let i=3;i<data.length;i+=4){ if(data[i]===0) transparent++; }
+          const ratio= transparent / (w*h*dpr*dpr); if(ratio>THRESH) reveal();
+        }catch{} }
         function reveal(){ card.classList.add('revealed'); canvas.style.display='none'; opened[i]=true; saveOpen(opened); heartConfetti(); }
 
         if(opened[i]){ card.classList.add('revealed'); canvas.style.display='none'; }
 
-        const pos = (e)=>{
-          const rect=canvas.getBoundingClientRect();
-          const cx=(e.touches? e.touches[0].clientX : e.clientX) - rect.left;
-          const cy=(e.touches? e.touches[0].clientY : e.clientY) - rect.top;
-          return {x:cx, y:cy};
-        };
+        const pos = (e)=>{ const rect=canvas.getBoundingClientRect(); const cx=(e.touches? e.touches[0].clientX : e.clientX) - rect.left; const cy=(e.touches? e.touches[0].clientY : e.clientY) - rect.top; return {x:cx, y:cy}; };
         canvas.addEventListener('pointerdown', e=>{ drawing=true; try{canvas.setPointerCapture(e.pointerId);}catch{} const p=pos(e); scratch(p.x,p.y); });
         canvas.addEventListener('pointermove', e=>{ if(!drawing) return; const p=pos(e); scratch(p.x,p.y); });
         ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=> drawing=false));
@@ -592,6 +544,7 @@
       });
     }
 
+    /* מניעת גרירת תמונות */
     qsa('img').forEach(img=>{
       img.addEventListener('dragstart', e=> e.preventDefault());
       img.addEventListener('contextmenu', e=> e.preventDefault());
