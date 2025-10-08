@@ -139,13 +139,12 @@
       </div>
     </section>
 
-    <!-- טיימליין -->
+    <!-- טיימליין (הכפתורים שלך כמו קודם) -->
     <section class="sec">
       <div class="card">
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה; תיאור יופיע למטה.</p>
         <div class="timeline" id="timeline">
-          <!-- … השמות/קבצים כמו אצלך … -->
           <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
           <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
           <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
@@ -462,21 +461,22 @@
         const THRESH=0.55;
         const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18;
 
-        /* --- טקסט ממורכז אמיתי, עוקף באג RTL של ספארי --- */
+        /* === טקסט "גרדי אותי" ממורכז באמצע === */
         function drawCenteredLabel(){
-          const label = 'גרדי אותי ✨';
-          const maxW = w * 0.86;
+          const label = 'גרדי אותי';
+          const maxW = w * 0.86;    // להשאיר שוליים
           const maxH = h * 0.55;
 
-          // נחשב פונט מתאים
+          // בחירת גודל פונט שמתאים למסגרת
           let fs = Math.floor(Math.min(w,h) * 0.22);
-          fs = Math.max(16, Math.min(26, fs));
+          fs = Math.max(16, Math.min(28, fs));
 
-          // נצייר LTR ונמקם ידנית לפי width
-          ctx.direction = 'ltr';
+          ctx.direction = 'ltr';           // עוקף בעיית RTL בספארי
+          ctx.textAlign = 'left';          // נחשב ידנית את המרכז
           ctx.textBaseline = 'alphabetic';
           ctx.fillStyle = '#ff2f75';
 
+          // להקטין עד שנכנס לרוחב/גובה המותרים
           while (fs > 12) {
             ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
             const m = ctx.measureText(label);
@@ -492,10 +492,11 @@
           const textW = m.width;
           const ascent = m.actualBoundingBoxAscent || fs*0.8;
           const descent = m.actualBoundingBoxDescent || fs*0.2;
-          const x = Math.round((w - textW)/2);                                  // שמאל ממורכז
-          const y = Math.round((h - (ascent + descent))/2 + ascent);            // אמצע אנכי
 
-          // מתאר לבן לניגודיות
+          const x = Math.round((w - textW)/2);                    // מרכז אופקי
+          const y = Math.round((h - (ascent + descent))/2 + ascent); // מרכז אנכי
+
+          // קו מתאר לבן לשיפור קריאות
           ctx.lineJoin='round'; ctx.miterLimit=2;
           ctx.lineWidth = Math.max(2, Math.floor(fs * 0.16));
           ctx.strokeStyle = 'rgba(255,255,255,0.95)';
@@ -521,7 +522,7 @@
           h=Math.max(128, Math.floor(r.height));
           canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr);
           canvas.style.width=w+'px'; canvas.style.height=h+'px';
-          ctx.setTransform(dpr,0,0,dpr,0,0);
+          ctx.setTransform(dpr,0,0,dpr,0,0);   // חדות ב-iOS
           paintCover();
           if(opened[i]) canvas.style.display='none';
         }
@@ -542,6 +543,7 @@
         ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=> drawing=false));
 
         resize();
+        // לרנדר שוב אחרי שהפונט נטען
         if (document.fonts && document.fonts.ready) { document.fonts.ready.then(()=> paintCover()); }
         window.addEventListener('resize', resize);
       }
