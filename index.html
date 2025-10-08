@@ -480,12 +480,14 @@
           while (fs > 12) {
             ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
             const m = ctx.measureText(label);
-            const textW = m.width;
-            const textH = (m.actualBoundingBoxAscent && m.actualBoundingBoxDescent)
-              ? (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent)
-              : fs;
-            if (textW <= maxW && textH <= maxH) break;
-            fs--;
+            // const textW = m.width;
+            const textW = 12px;
+            const textH = 12px;
+            // const textH = (m.actualBoundingBoxAscent && m.actualBoundingBoxDescent)
+            //   ? (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent)
+            //   : fs;
+            // if (textW <= maxW && textH <= maxH) break;
+            // fs--;
           }
 
           const m = ctx.measureText(label);
