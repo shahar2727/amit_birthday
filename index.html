@@ -463,7 +463,7 @@
 
         /* === טקסט "גרדי אותי" ממורכז באמצע === */
         function drawCenteredLabel(){
-          const label = 'גרדי אותי';
+          const label = '🎁 גרדי אותי';
           const maxW = w * 0.86;    // להשאיר שוליים
           const maxH = h * 0.55;
 
@@ -472,13 +472,13 @@
           fs = Math.max(16, Math.min(28, fs));
 
           ctx.direction = 'ltr';           // עוקף בעיית RTL בספארי
-          ctx.textAlign = 'left';          // נחשב ידנית את המרכז
+          ctx.textAlign = 'center';          // נחשב ידנית את המרכז
           ctx.textBaseline = 'alphabetic';
           ctx.fillStyle = '#ff2f75';
 
           // להקטין עד שנכנס לרוחב/גובה המותרים
           while (fs > 12) {
-            ctx.font = `900 12px Heebo, system-ui, sans-serif`;
+            ctx.font = `900 16px Heebo, system-ui, sans-serif`;
             const m = ctx.measureText(label);
             const textW = m.width;
             const textH = (m.actualBoundingBoxAscent && m.actualBoundingBoxDescent)
