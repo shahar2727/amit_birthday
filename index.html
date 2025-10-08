@@ -145,7 +145,7 @@
         <h3 class="h">🌟 רגעים ומקומות שלנו</h3>
         <p class="hint">לחצי על רגע כדי לפתוח תמונה; תיאור יופיע למטה.</p>
         <div class="timeline" id="timeline">
-          <!-- (השארתי את הרשימה שהבאת) -->
+          <!-- … השמות/קבצים כמו אצלך … -->
           <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
           <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
           <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
@@ -460,38 +460,47 @@
 
         let w=0,h=0,dpr=1; let drawing=false; let strokes=0;
         const THRESH=0.55;
-        const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18; // מברשת מעט גדולה במגע
+        const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18;
 
+        /* --- טקסט ממורכז אמיתי, עוקף באג RTL של ספארי --- */
         function drawCenteredLabel(){
-          // טקסט יחיד, ממורכז לחלוטין
           const label = 'גרדי אותי ✨';
-          const maxW = w * 0.88;       // שוליים
-          const maxH = h * 0.6;
+          const maxW = w * 0.86;
+          const maxH = h * 0.55;
 
-          // גודל התחלתי יחסי לגובה/רוחב
+          // נחשב פונט מתאים
           let fs = Math.floor(Math.min(w,h) * 0.22);
-          fs = Math.max(14, Math.min(28, fs));
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillStyle = '#ff2f75';
-          ctx.lineJoin = 'round';
-          ctx.miterLimit = 2;
+          fs = Math.max(16, Math.min(26, fs));
 
-          // הקטן עד שנכנס לרוחב ולגובה
+          // נצייר LTR ונמקם ידנית לפי width
+          ctx.direction = 'ltr';
+          ctx.textBaseline = 'alphabetic';
+          ctx.fillStyle = '#ff2f75';
+
           while (fs > 12) {
             ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
             const m = ctx.measureText(label);
             const textW = m.width;
-            const textH = fs; // קירוב טוב לגובה
+            const textH = (m.actualBoundingBoxAscent && m.actualBoundingBoxDescent)
+              ? (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent)
+              : fs;
             if (textW <= maxW && textH <= maxH) break;
             fs--;
           }
 
-          // קו מתאר לבן עדין לניגודיות
+          const m = ctx.measureText(label);
+          const textW = m.width;
+          const ascent = m.actualBoundingBoxAscent || fs*0.8;
+          const descent = m.actualBoundingBoxDescent || fs*0.2;
+          const x = Math.round((w - textW)/2);                                  // שמאל ממורכז
+          const y = Math.round((h - (ascent + descent))/2 + ascent);            // אמצע אנכי
+
+          // מתאר לבן לניגודיות
+          ctx.lineJoin='round'; ctx.miterLimit=2;
           ctx.lineWidth = Math.max(2, Math.floor(fs * 0.16));
           ctx.strokeStyle = 'rgba(255,255,255,0.95)';
-          ctx.strokeText(label, Math.round(w/2), Math.round(h/2));
-          ctx.fillText(label, Math.round(w/2), Math.round(h/2));
+          ctx.strokeText(label, x, y);
+          ctx.fillText(label, x, y);
         }
 
         function paintCover(){
@@ -512,7 +521,7 @@
           h=Math.max(128, Math.floor(r.height));
           canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr);
           canvas.style.width=w+'px'; canvas.style.height=h+'px';
-          ctx.setTransform(dpr,0,0,dpr,0,0); // חד על רטינה
+          ctx.setTransform(dpr,0,0,dpr,0,0);
           paintCover();
           if(opened[i]) canvas.style.display='none';
         }
