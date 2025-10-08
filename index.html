@@ -99,8 +99,8 @@
     @media(min-width:880px){.scratch-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
     .scratch-card{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:128px}
     @media(min-width:880px){.scratch-card{min-height:150px}}
-    .scratch-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:12px}
-    .scratch-content .title{font-weight:900;font-size:clamp(14px,3.6vw,18px);color:var(--rose);line-height:1.25}
+    .scratch-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:16px}
+    .scratch-content .title{font-weight:900;font-size:clamp(14px,3.6vw,18px);color:var(--rose);line-height:1.25;word-break:break-word}
     .scratch-content .sub{font-weight:700;font-size:clamp(12px,3.2vw,15px);color:#666;margin-top:6px;line-height:1.3;word-break:break-word}
     .scratch-canvas{position:absolute;inset:0;touch-action:none;background:transparent}
     .scratch-card.revealed .scratch-canvas{display:none}
@@ -176,7 +176,7 @@
         <p class="hint">לחצי על רגע כדי לפתוח תמונה; תיאור יופיע למטה.</p>
         <div class="timeline" id="timeline">
           <!-- שמור שמות קבצים כמו שיש לך -->
-              <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
+          <button class="chip" type="button" data-photo="assets/places/weed.jpg" data-cap="סטלנים מן המניין">סטלנית המועדפת עלי❤️</button>
           <button class="chip" type="button" data-photo="assets/places/eilat.jpg" data-cap="אילת — חופשה מטורפת">🏝️ אילת</button>
           <button class="chip" type="button" data-photo="assets/places/deadsea.jpg" data-cap="ים המלח — ראינו זריחה🌅">🧂 ים המלח</button>
           <button class="chip" type="button" data-photo="assets/places/video.jpg" data-cap="את הכי מתוקה!">שיחות וידאו</button>
@@ -220,7 +220,7 @@
     <!-- הברכה — חשיפה על גלילה, אפקט לכל מקטע -->
     <section class="sec">
       <div class="grid cols-2" id="blessingGrid">
-        <!-- אמלא במקטעים דינמית מתוך הטקסט שלך -->
+        <!-- ממולא דינמית -->
       </div>
     </section>
 
@@ -263,7 +263,7 @@
     const qsa = (s,el=document)=> [...el.querySelectorAll(s)];
     const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ===== Gate (לא נוגעים בלוגיקה) =====
+    // ===== Gate =====
     const PASSWORD_HASH = "4a46b0304f5d192b82dfe73eeebbbe2c0ac569338a14c09e17643ad14709b3cd";
     const BDAY_ISO = "2025-10-20T00:00:00+03:00";
 
@@ -310,21 +310,20 @@
     // ===== App =====
     function startApp(){
       $app.style.display='block';
-      // GSAP חשיפה על גלילה
       if(window.gsap && !prefersReducedMotion){
         if(window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
         gsap.from('#bigTitle',{y:20,opacity:0,duration:.8,ease:'power2.out'});
       }
-      setupBlessing();          // בניית מקטעי הברכה מהטקסט שסיפקת
-      setupTimelineLightbox();  // תמונות + לייטבוקס
-      setupScratch();           // לוח גירוד 12
+      setupBlessing();
+      setupTimelineLightbox();
+      setupScratch();
     }
 
     // כפתורים
     $reveal.addEventListener('click', async ()=>{ heartConfetti(); await sleep(120); window.scrollTo({top:window.innerHeight,behavior:'smooth'}); });
     $playSong.addEventListener('click', ()=>{ $song.play().catch(()=>{}); });
 
-    // ===== מחולל מחמאות (ללא שינוי) =====
+    // ===== מחולל מחמאות =====
     const compliments = ["את הכי רזה","הכי יפה בעולם","לב של זהב","הכי מצחיקה בחדר","חכמה בטירוף","עוצמה שקטה שנוכחת","החיבוק שלך מתקן ימים קשים","חיוך שמרים מצב רוח בשנייה","מלכת הוייב הטוב","אלופת ה'יהיה טוב — בואי נזיז את זה'","אינטואיציה של גאון","הכי אמיתית שיש","קשובה כמו פסיכולוגית, זורמת כמו חברה הכי טובה","סטייל של מיליון דולר בלי להשתדל","עושה אנשים סביבך יותר טובים","הומור שמגרש עננים","סופר-כישרונית, נקודה","מנהלת כאוס כמו בוס","לב של צ'יפס חם — ממכר","ה-GOAT של החברות","ה-MVP של השנה שלי","הכי 'אפשר לסמוך עליה' שאני מכיר","את הופכת זיכרונות לסרט","הפתעות קטנות — רגעים גדולים","אומץ שנדבק","המבט שלך אומר 'סמוך עליי' — ותמיד עובד","את עושה טוב לעולם בלי לעשות מזה עניין","אחת ויחידה — עמית אוחיון 💥"];
     qs('#nextCompliment').addEventListener('click', ()=>{
       const t=compliments[Math.floor(Math.random()*compliments.length)];
@@ -344,18 +343,25 @@
 
     // ===== לייטבוקס =====
     const $lightbox=qs('#lightbox'), $lbImg=qs('#lbImg'), $lbCap=qs('#lbCap'), $lbClose=qs('#lbClose');
+
     function openLightbox(src, cap){
       if(!src) return;
       $lbCap.textContent = cap || '';
-      const candidates=[src, src.startsWith('assets/places/')? src.split('/').pop() : 'assets/places/'+(src.split('/').pop()||'')];
-      let i=0;
-      $lbImg.onerror=()=>{
+      const base = src.split('/').pop() || '';
+      const stem = base.replace(/\.(jpe?g|webp|png)$/i,'');
+      const exts = ['.jpg','.jpeg','.webp','.png'];
+      const withPath = p => p.startsWith('assets/places/') ? p : 'assets/places/'+p;
+      const candidates = [src, withPath(base), ...exts.map(e => withPath(stem+e))];
+
+      let i = 0;
+      $lbImg.onerror = ()=>{
         i++;
-        if(i<candidates.length){ $lbImg.src=candidates[i]; }
+        if(i < candidates.length){ $lbImg.src = candidates[i]; }
         else { $lbImg.removeAttribute('src'); $lbCap.textContent = (cap? cap+' — ' : '') + 'תמונה תעלה בהמשך'; }
       };
-      i=0; $lbImg.src=candidates[0];
-      $lightbox.classList.add('show'); $lightbox.style.display='flex';
+      $lbImg.src = candidates[0];
+      $lightbox.classList.add('show');
+      $lightbox.style.display='flex';
     }
     function closeLightbox(){ $lightbox.classList.remove('show'); $lightbox.style.display='none'; $lbImg.removeAttribute('src'); }
     $lbClose.addEventListener('click', closeLightbox);
@@ -435,7 +441,7 @@
 
     function setupBlessing(){
       const container = qs('#blessingGrid');
-      const parts = blessingText.split(/\n\s*\n/).filter(Boolean); // פסקאות
+      const parts = blessingText.split(/\n\s*\n/).filter(Boolean);
       const effectsCycle = ['type','cascade','flip','timeline','reveal','highlight','sparkle','mask','stamp','checklist','finale'];
       container.innerHTML = '';
       parts.forEach((txt, i)=>{
@@ -452,7 +458,7 @@
 
       if(window.gsap && !prefersReducedMotion){
         if(window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-        qsa('#blessingGrid .card').forEach((el, idx)=>{
+        qsa('#blessingGrid .card').forEach((el)=>{
           const eff = el.dataset.effect;
           let vars={opacity:0,y:22,duration:.7,ease:'power2.out'};
           if(eff==='flip') vars={opacity:0,rotationY:90,transformOrigin:'50% 50%',duration:.7};
@@ -464,7 +470,6 @@
           if(eff==='checklist') vars={opacity:0,y:18,duration:.6};
           if(eff==='finale') vars={opacity:0,y:30,duration:.8};
           if(['reveal','timeline','highlight'].includes(eff)) vars={opacity:0,y:16,duration:.6};
-
           gsap.from(el, { ...vars, scrollTrigger:{trigger:el, start:'top 80%', once:true, onEnter:()=>{ if(eff==='sparkle') heartConfetti(); }} });
         });
       }
@@ -474,22 +479,22 @@
     const SCRATCH_MAP_KEY='scratch_map_v2';
     const SCRATCH_OPEN_KEY='scratch_open_v2';
     const PRIZES=[
-      {id:'p1', title:'☘️ 5 גרם סליפרי', sub:'רגעים ירוקים ומחויכים'},
-      {id:'p2', title:'🍭 חבילה ענקית של סוכריות לוליפופ', sub:''},
-      {id:'p3', title:'🍬 חבילה ענקית של הטופי הארוך', sub:''},
-      {id:'p4', title:'🎫 הופעה של אושר כהן', sub:''},
-      {id:'p5', title:'🎸 הופעה של מוניקה סקס', sub:''},
-      {id:'p6', title:'🎤 יסמין מועלם — פסטיבל התמר', sub:'הזריחה הראשונה'},
-      {id:'p7', title:'🎤 עומר אדם😎 — פסטיבל התמר', sub:'לחלום בקול'},
-      {id:'p8', title:'🎤 איפה הילד — פסטיבל התמר', sub:'נוסטלגיה בזריחה'},
-      {id:'p9', title:'🎶 מוש בן ארי & Co — פסטיבל התמר', sub:'טוב על הנשמה'},
+      {id:'p1',  title:'☘️ 5 גרם סליפרי', sub:'רגעים ירוקים ומחויכים'},
+      {id:'p2',  title:'🍭 חבילה ענקית של סוכריות לוליפופ', sub:''},
+      {id:'p3',  title:'🍬 חבילה ענקית של הטופי הארוך', sub:''},
+      {id:'p4',  title:'🎫 הופעה של אושר כהן', sub:''},
+      {id:'p5',  title:'🎸 הופעה של מוניקה סקס', sub:''},
+      {id:'p6',  title:'🎤 יסמין מועלם — פסטיבל התמר', sub:'הזריחה הראשונה'},
+      {id:'p7',  title:'🎤 עומר אדם😎 — פסטיבל התמר', sub:'לחלום בקול'},
+      {id:'p8',  title:'🎤 איפה הילד — פסטיבל התמר', sub:'נוסטלגיה בזריחה'},
+      {id:'p9',  title:'🎶 מוש בן ארי & Co — פסטיבל התמר', sub:'טוב על הנשמה'},
       {id:'p10', title:'🌐 אתר יום הולדת לתמיד', sub:'המזכרת שלך ברשת'},
       {id:'p11', title:'🍜 חבילת ראמנים', sub:'יאמי יאמי'},
       {id:'p12', title:'🧴 אלכוג\'לים', sub:'כי את מכורה'},
     ];
     function shuffle(a){const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
     function loadMap(){try{const m=JSON.parse(localStorage.getItem(SCRATCH_MAP_KEY));if(Array.isArray(m)&&m.length===12)return m;}catch{} const map=shuffle(PRIZES.map(p=>p.id)); localStorage.setItem(SCRATCH_MAP_KEY,JSON.stringify(map)); return map;}
-    function loadOpen(){try{const s=JSON.parse(localStorage.getItem(SCRATCH_OPEN_KEY)); return s&&typeof s==='object'? s : {};}catch{return {};}}
+    function loadOpen(){try{const s=JSON.parse(localStorage.getItem(SCRATCH_OPEN_KEY)); return s&&typeof s==='object'? s : {};}catch{return {}}}
     function saveOpen(o){localStorage.setItem(SCRATCH_OPEN_KEY,JSON.stringify(o));}
 
     function setupScratch(){
@@ -508,29 +513,47 @@
 
         let w=0,h=0,dpr=1; let drawing=false; let strokes=0;
         const THRESH=0.55;
-        const BR = matchMedia('(pointer:coarse)').matches ? 26 : 18;
+        const BR = matchMedia('(pointer:coarse)').matches ? 30 : 18; // מברשת גדולה יותר למגע
 
-        function coverFontSize(){
-          // פונט דינמי וחד לפי גודל הכרטיס
-          const base = Math.min(w,h);
-          return Math.max(14, Math.min(20, Math.floor(base*0.12)));
+        function getFittedFontSize(){
+          // התאמה לרוחב – לשמור על קריאות גם בכרטיסים קטנים
+          let fs = Math.floor(Math.min(w, h) * 0.18);
+          fs = Math.max(16, Math.min(26, fs));
+          ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
+          let maxW = w * 0.86;
+          let m = ctx.measureText('גרדי אותי ✨');
+          while (m.width > maxW && fs > 16) {
+            fs--;
+            ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
+            m = ctx.measureText('גרדי אותי ✨');
+          }
+          return fs;
         }
 
         function paintCover(){
           ctx.save();
           ctx.globalCompositeOperation='source-over';
           ctx.clearRect(0,0,w,h);
-          // שכבת ורוד בהיר
+          // שכבת ורוד בהיר + מסגרת
           ctx.fillStyle='#ffd5e5'; ctx.fillRect(0,0,w,h);
-          // מסגרת
           ctx.strokeStyle='#ffc1d6'; ctx.lineWidth=2; ctx.strokeRect(1,1,w-2,h-2);
-          // טקסט חד במרכז
-          ctx.fillStyle='#ff6fa3';
-          ctx.font=`700 ${coverFontSize()}px Heebo, system-ui, sans-serif`;
+
+          // טקסט חד במרכז עם קו מתאר לבן וניגודיות גבוהה
+          const fs = getFittedFontSize();
+          ctx.font = `900 ${fs}px Heebo, system-ui, sans-serif`;
           ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.fillText('גרדי אותי ✨', w/2, h/2);
+          const cx = Math.round(w/2), cy = Math.round(h/2);
+
+          ctx.lineJoin='round'; ctx.miterLimit=2;
+          ctx.lineWidth = Math.max(2, Math.floor(fs * 0.16));
+          ctx.strokeStyle='rgba(255,255,255,0.95)';
+          ctx.strokeText('גרדי אותי ✨', cx, cy);
+
+          ctx.fillStyle='#ff2f75'; // ורוד כהה יותר לניגודיות
+          ctx.fillText('גרדי אותי ✨', cx, cy);
+
           ctx.restore();
-          // מצב מחיקה לגירוד
+          // מצב מחיקה לגרוד
           ctx.globalCompositeOperation='destination-out';
         }
 
@@ -569,7 +592,12 @@
         canvas.addEventListener('pointermove', e=>{ if(!drawing) return; const p=pos(e); scratch(p.x,p.y); });
         ['pointerup','pointercancel','pointerleave'].forEach(ev=> canvas.addEventListener(ev, ()=> drawing=false));
 
-        resize(); window.addEventListener('resize', resize);
+        resize();
+        // ציור חוזר אחרי טעינת הפונטים כדי למנוע טשטוש/פונט חלופי
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(()=> paintCover());
+        }
+        window.addEventListener('resize', resize);
       }
 
       qs('#resetScratch').addEventListener('click', ()=>{
