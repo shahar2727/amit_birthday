@@ -83,6 +83,10 @@
     .scratch-canvas {
       width: 100% !important;
     }
+    .video-container {position: relative;padding-bottom: 56.25%; /* 16:9 */height: 0;overflow: hidden;max-width: 100%;}
+
+    .video-container iframe {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+
   </style>
 </head>
 <body>
@@ -135,9 +139,9 @@
     
         <!-- וידאו טיול יום הולדת -->
     <section class="sec">
-      <div class="card video-card">
+      <div class="card video-card" class="video-container">
         <h3 class="h">🎥 Birthday trip</h3>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/v3xJdO48KtM?si=-GJlm3pCipz8ZCom" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/v3xJdO48KtM?si=-GJlm3pCipz8ZCom" title="YouTube video" allowfullscreen></iframe>
         <p class="hint">לחצי פליי כדי לצפות (מתאים לאייפון).</p>
       </div>
     </section>
