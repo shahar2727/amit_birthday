@@ -86,6 +86,16 @@
     .video-container {position: relative;padding-bottom: 56.25%; /* 16:9 */height: 0;overflow: hidden;max-width: 100%;}
 
     .video-container iframe {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+    .video-container {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+.video-container iframe {
+  border: 0;
+  display: block;
+}
+
 
   </style>
 </head>
@@ -137,14 +147,27 @@
       </div>
     </section>
     
-        <!-- וידאו טיול יום הולדת -->
-    <section class="sec">
-      <div class="card video-card" class="video-container">
-        <h3 class="h">🎥 Birthday trip</h3>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/v3xJdO48KtM?si=-GJlm3pCipz8ZCom" title="YouTube video" allowfullscreen></iframe>
-        <p class="hint">לחצי פליי כדי לצפות (מתאים לאייפון).</p>
+<!-- וידאו טיול יום הולדת -->
+  <section class="sec">
+    <div class="card video-card">
+      <h3 class="h">🎥 Birthday trip</h3>
+
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/v3xJdO48KtM?rel=0&playsinline=1"
+          title="YouTube video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
       </div>
-    </section>
+
+    <p class="hint">לחצי פליי כדי לצפות (מתאים לאייפון).</p>
+  </div>
+</section>
+
+    
 
     <!-- מוזיקה -->
     <section class="sec">
